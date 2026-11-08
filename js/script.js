@@ -727,51 +727,63 @@ $('homecareForm').addEventListener('submit', e => {
 });
 /* ===== HOMECARE CONFIRMATION ===== */
 
-$('confirmHomecareBtn').addEventListener('click', () => {
-  if (!pendingHomecareData) return;
+$('confirmHomecareBtn').addEventListener(
+  'click',
+  async () => {
+    if (!pendingHomecareData) {
+      return;
+    }
 
-  const savedRequest = {
-    ...pendingHomecareData
-  };
+    const savedRequest = {
+      ...pendingHomecareData
+    };
 
-  if (!addRequest(savedRequest)) return;
+    const saved =
+      await addRequest(savedRequest);
 
-  const latestRequest = getRequests()[0];
+    if (!saved) {
+      return;
+    }
 
-  if (latestRequest) {
-    $('homecareStatusTitle').textContent =
-      latestRequest.title;
+    const latestRequest =
+      getRequests()[0];
 
-    $('homecareStatusDate').textContent =
-      latestRequest.date;
+    if (latestRequest) {
+      $('homecareStatusTitle').textContent =
+        latestRequest.title;
 
-    $('homecareStatusTime').textContent =
-      latestRequest.time;
+      $('homecareStatusDate').textContent =
+        latestRequest.date;
 
-    $('homecareStatusId').textContent =
-      'Mã yêu cầu: ' + latestRequest.id;
+      $('homecareStatusTime').textContent =
+        latestRequest.time;
 
-    const statusBox =
-      $('homecareRequestStatus');
+      $('homecareStatusId').textContent =
+        'Mã yêu cầu: ' +
+        latestRequest.id;
 
-    statusBox.hidden = false;
+      const statusBox =
+        $('homecareRequestStatus');
+
+      statusBox.hidden = false;
+    }
+
+    pendingHomecareData = null;
+
+    $('homecareConfirm').setAttribute(
+      'aria-hidden',
+      'true'
+    );
+
+    renderRequests();
+
+    toast(
+      'Đã lưu yêu cầu demo. Chưa gửi đến nhà cung cấp dịch vụ.'
+    );
+
+    goPage('requests');
   }
-
-  pendingHomecareData = null;
-
-  $('homecareConfirm').setAttribute(
-    'aria-hidden',
-    'true'
-  );
-
-  renderRequests();
-
-  toast(
-    'Đã lưu yêu cầu demo. Chưa gửi đến nhà cung cấp dịch vụ.'
-  );
-
-  goPage('requests');
-});
+);
 
 
 /* ===== ĐÓNG HOMECARE CONFIRMATION ===== */
