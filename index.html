@@ -1218,5 +1218,22 @@
       <section class="page" data-page-content="profile"><div class="page-heading"><div><span class="eyebrow">TÀI KHOẢN</span><h1>Hồ sơ cá nhân</h1><p>Thông tin tài khoản đang dùng trong bản demo.</p></div><span class="page-icon">♙</span></div><div class="profile-layout"><section class="panel profile-card"><div class="profile-avatar" id="profileAvatar">T</div><h2 id="profileName">Người dùng</h2><p id="profileRole" class="muted">Người bệnh / Người nhà</p><span class="verified-pill">TÀI KHOẢN DEMO</span></section><section class="panel profile-details"><div class="panel-heading"><div><h3>Thông tin tài khoản</h3><p>Cập nhật trong phiên demo</p></div></div><form id="profileForm" class="form-grid"><div class="field full"><label for="profileNameInput">Họ và tên</label><input id="profileNameInput" maxlength="100" required></div><div class="field full"><label for="profileEmailInput">Email</label><input id="profileEmailInput" type="email" readonly></div><div class="field full"><label for="profileRoleInput">Vai trò</label><input id="profileRoleInput" readonly></div><div class="full"><button class="btn btn-primary" type="submit">Lưu thông tin demo →</button></div></form><div class="notice-panel">Đây chưa phải đăng nhập bảo mật. Không dùng mật khẩu thật hoặc dữ liệu cá nhân nhạy cảm trên bản demo.</div></section></div></section>
     </main></div>
   </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL =
+      'https://eolyzgzulxtfgvbkgykh.supabase.co';
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      'sb_publishable_bpDChUlHPp-t5aBStyoSIg_KdFJfwEL';
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+  </script>
+
   <script src="js/script.js"></script>
-  </body></html>
+  </body>
+</html>
