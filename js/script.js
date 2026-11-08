@@ -101,7 +101,15 @@ if (sessionError || !sessionData.session) {
   );
   return;
 }
+console.log(
+  'MEDINEX SIGNUP USER:',
+  data.user
+);
 
+console.log(
+  'MEDINEX SIGNUP SESSION:',
+  sessionData.session
+);
 const {
   error: profileError
 } = await supabaseClient
@@ -114,6 +122,10 @@ const {
     avatar_initial:
       name.charAt(0).toUpperCase()
   });
+  console.log(
+  'MEDINEX PROFILE INSERT ERROR:',
+  profileError
+);
 
 if (profileError) {
   console.error(
