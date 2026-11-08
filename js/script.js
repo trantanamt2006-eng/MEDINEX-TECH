@@ -2217,24 +2217,51 @@ if (installAppButton) {
   installAppButton.addEventListener(
     'click',
     async () => {
-      if (!deferredInstallPrompt) {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+
+        const choice =
+          await deferredInstallPrompt.userChoice;
+
+        console.log(
+          'MEDINEX PWA install choice:',
+          choice.outcome
+        );
+
+        deferredInstallPrompt = null;
+        installAppButton.hidden = true;
+
+        return;
+      }
+
+      const isIOS =
+        /iphone|ipad|ipod/i.test(
+          navigator.userAgent
+        );
+
+      const isStandalone =
+        window.matchMedia(
+          '(display-mode: standalone)'
+        ).matches ||
+        window.navigator.standalone === true;
+
+      if (isStandalone) {
         toast(
-          'Trình duyệt chưa sẵn sàng cài ứng dụng.'
+          'MEDINEX TECH đã được cài trên thiết bị.'
         );
         return;
       }
 
-      deferredInstallPrompt.prompt();
+      if (isIOS) {
+        toast(
+          'Trên iPhone/iPad: nhấn Chia sẻ → Thêm vào Màn hình chính.'
+        );
+        return;
+      }
 
-      const choice =
-        await deferredInstallPrompt.userChoice;
-
-      console.log(
-        'MEDINEX PWA install choice:',
-        choice.outcome
+      toast(
+        'Hãy mở MEDINEX TECH bằng Chrome rồi thử lại.'
       );
-
-      deferredInstallPrompt = null;
     }
   );
 }
