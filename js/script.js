@@ -90,19 +90,43 @@ if (state.mode === 'register') {
     return;
   }
 
-  const {
-    error: profileError
-  } = await supabaseClient
-    .from('profiles')
-    .insert({
-      id: data.user.id,
-      name: name,
-      email: email,
-      role: state.role,
-      avatar_initial:
-        name.charAt(0).toUpperCase()
-    });
+const {
+  data: sessionData,
+  error: sessionError
+} = await supabaseClient.auth.getSession();
 
+if (sessionError || !sessionData.session) {
+  toast(
+    'Tài khoản đã tạo nhưng chưa xác thực được phiên đăng nhập.'
+  );
+  return;
+}
+
+const {
+  error: profileError
+} = await supabaseClient
+  .from('profiles')
+  .insert({
+    id: sessionData.session.user.id,
+    name: name,
+    email: email,
+    role: state.role,
+    avatar_initial:
+      name.charAt(0).toUpperCase()
+  });
+
+if (profileError) {
+  console.error(
+    'MEDINEX Profile Insert Error:',
+    profileError
+  );
+
+  toast(
+    'Tạo tài khoản thành công nhưng chưa lưu được hồ sơ: ' +
+    profileError.message
+  );
+  return;
+}
   if (profileError) {
     console.error(
       'MEDINEX Profile Insert Error:',
