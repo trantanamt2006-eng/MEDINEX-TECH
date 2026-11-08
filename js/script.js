@@ -74,9 +74,15 @@ if (state.mode === 'register') {
     } = await supabaseClient.auth.getSession();
 
     if (sessionError) {
+      console.error(
+        'MEDINEX Session Error:',
+        sessionError
+      );
+
       toast(
         'Tài khoản đã tạo nhưng chưa thể khởi tạo phiên đăng nhập.'
       );
+
       return;
     }
 
@@ -87,58 +93,38 @@ if (state.mode === 'register') {
     toast(
       'Tài khoản đã tạo nhưng chưa có phiên đăng nhập.'
     );
+
     return;
   }
 
-const {
-  data: sessionData,
-  error: sessionError
-} = await supabaseClient.auth.getSession();
-
-if (sessionError || !sessionData.session) {
-  toast(
-    'Tài khoản đã tạo nhưng chưa xác thực được phiên đăng nhập.'
-  );
-  return;
-}
-console.log(
-  'MEDINEX SIGNUP USER:',
-  data.user
-);
-
-console.log(
-  'MEDINEX SIGNUP SESSION:',
-  sessionData.session
-);
-const {
-  error: profileError
-} = await supabaseClient
-  .from('profiles')
-  .insert({
-    id: sessionData.session.user.id,
-    name: name,
-    email: email,
-    role: state.role,
-    avatar_initial:
-      name.charAt(0).toUpperCase()
-  });
   console.log(
-  'MEDINEX PROFILE INSERT ERROR:',
-  profileError
-);
+    'MEDINEX SIGNUP USER:',
+    data.user
+  );
 
-if (profileError) {
-  console.error(
-    'MEDINEX Profile Insert Error:',
+  console.log(
+    'MEDINEX SIGNUP SESSION:',
+    session
+  );
+
+  const {
+    error: profileError
+  } = await supabaseClient
+    .from('profiles')
+    .insert({
+      id: data.user.id,
+      name,
+      email,
+      role: state.role,
+      avatar_initial:
+        name.charAt(0).toUpperCase()
+    });
+
+  console.log(
+    'MEDINEX PROFILE INSERT ERROR:',
     profileError
   );
 
-  toast(
-    'Tạo tài khoản thành công nhưng chưa lưu được hồ sơ: ' +
-    profileError.message
-  );
-  return;
-}
   if (profileError) {
     console.error(
       'MEDINEX Profile Insert Error:',
@@ -149,6 +135,7 @@ if (profileError) {
       'Tạo tài khoản thành công nhưng chưa lưu được hồ sơ: ' +
       profileError.message
     );
+
     return;
   }
 
