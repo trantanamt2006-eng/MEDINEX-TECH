@@ -18,7 +18,193 @@ document.querySelectorAll('[data-close-auth]').forEach(b=>b.addEventListener('cl
 document.querySelectorAll('[data-role]').forEach(b=>b.addEventListener('click',()=>{state.role=b.dataset.role;$('roleChoices').classList.add('hidden');$('authForm').classList.remove('hidden');$('authTitle').textContent=state.mode==='register'?'Tạo tài khoản demo':'Đăng nhập demo';$('authDescription').textContent='Vai trò: '+roleNames[state.role];$('nameLabel').classList.toggle('hidden',state.mode!=='register');$('authName').classList.toggle('hidden',state.mode!=='register');$('authName').required=state.mode==='register';$('authPassword').autocomplete=state.mode==='register'?'new-password':'current-password';$('authSubmit').textContent=state.mode==='register'?'Tạo tài khoản demo →':'Đăng nhập →';$('authSwitchText').textContent=state.mode==='register'?'Đã có tài khoản?':'Chưa có tài khoản?';$('authSwitch').textContent=state.mode==='register'?'Đăng nhập':'Đăng ký';$('authName').value='';$('authEmail').value='';$('authPassword').value=''}));
 $('backRoles').addEventListener('click',()=>{$('roleChoices').classList.remove('hidden');$('authForm').classList.add('hidden')});
 $('authSwitch').addEventListener('click',()=>{state.mode=state.mode==='register'?'login':'register';$('authTitle').textContent=state.mode==='register'?'Tạo tài khoản demo':'Đăng nhập demo';$('nameLabel').classList.toggle('hidden',state.mode!=='register');$('authName').classList.toggle('hidden',state.mode!=='register');$('authName').required=state.mode==='register';$('authPassword').autocomplete=state.mode==='register'?'new-password':'current-password';$('authSubmit').textContent=state.mode==='register'?'Tạo tài khoản demo →':'Đăng nhập →';$('authSwitchText').textContent=state.mode==='register'?'Đã có tài khoản?':'Chưa có tài khoản?';$('authSwitch').textContent=state.mode==='register'?'Đăng nhập':'Đăng ký'});
-$('authForm').addEventListener('submit',e=>{e.preventDefault();const email=$('authEmail').value.trim().toLowerCase(),password=$('authPassword').value,name=$('authName').value.trim();let users=getStore(STORE.users,[]);if(state.mode==='register'){if(!name){toast('Vui lòng nhập họ và tên.');return}if(users.some(u=>u.email===email&&u.role===state.role)){toast('Tài khoản demo này đã tồn tại ở vai trò đã chọn. Hãy đăng nhập.');return}users.push({email,name,role:state.role,password,createdAt:new Date().toISOString()});if(!setStore(STORE.users,users))return;state.user={email,name,role:state.role};}else{const found=users.find(u=>u.email===email&&u.role===state.role&&u.password===password);if(!found){toast('Không tìm thấy tài khoản phù hợp. Với lần đầu, hãy chọn Đăng ký.');return}state.user={email:found.email,name:found.name,role:found.role}}setStore(STORE.session,state.user);closeAuth();showApp();toast(state.mode==='register'?'Đã tạo tài khoản demo.':'Đăng nhập demo thành công.');});
+$('authForm').addEventListener('submit', async e => {
+  e.preventDefault();
+
+  const email =
+    $('authEmail').value.trim().toLowerCase();
+
+  const password =
+    $('authPassword').value;
+
+  const name =
+    $('authName').value.trim();
+
+  if (!email || !password) {
+    toast('Vui lòng nhập email và mật khẩu.');
+    return;
+  }
+
+  if (state.mode === 'register' && !name) {
+    toast('Vui lòng nhập họ và tên.');
+    return;
+  }
+
+  const submitBtn =
+    $('authSubmit');
+
+  submitBtn.disabled = true;
+
+  try {
+if (state.mode === 'register') {
+  const {
+    data,
+    error
+  } = await supabaseClient.auth.signUp({
+    email,
+    password
+  });
+
+  if (error) {
+    toast(error.message);
+    return;
+  }
+
+  if (!data.user) {
+    toast('Không thể tạo tài khoản.');
+    return;
+  }
+
+  let session = data.session;
+
+  if (!session) {
+    const {
+      data: sessionData,
+      error: sessionError
+    } = await supabaseClient.auth.getSession();
+
+    if (sessionError) {
+      toast(
+        'Tài khoản đã tạo nhưng chưa thể khởi tạo phiên đăng nhập.'
+      );
+      return;
+    }
+
+    session = sessionData.session;
+  }
+
+  if (!session) {
+    toast(
+      'Tài khoản đã tạo nhưng chưa có phiên đăng nhập.'
+    );
+    return;
+  }
+
+  const {
+    error: profileError
+  } = await supabaseClient
+    .from('profiles')
+    .insert({
+      id: data.user.id,
+      name: name,
+      email: email,
+      role: state.role,
+      avatar_initial:
+        name.charAt(0).toUpperCase()
+    });
+
+  if (profileError) {
+    console.error(
+      'MEDINEX Profile Insert Error:',
+      profileError
+    );
+
+    toast(
+      'Tạo tài khoản thành công nhưng chưa lưu được hồ sơ: ' +
+      profileError.message
+    );
+    return;
+  }
+
+  state.user = {
+    id: data.user.id,
+    email,
+    name,
+    role: state.role
+  };
+
+  closeAuth();
+  showApp();
+
+  toast(
+    'Đã tạo tài khoản MEDINEX TECH thành công.'
+  );
+
+} else {
+      const {
+        data,
+        error
+      } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) {
+        toast(
+          'Đăng nhập thất bại: ' +
+          error.message
+        );
+        return;
+      }
+
+      if (!data.user) {
+        toast('Không tìm thấy tài khoản.');
+        return;
+      }
+
+      const {
+        data: profile,
+        error: profileError
+      } = await supabaseClient
+        .from('profiles')
+        .select('*')
+        .eq('id', data.user.id)
+        .single();
+
+      if (profileError || !profile) {
+        toast(
+          'Không tìm thấy hồ sơ người dùng.'
+        );
+        return;
+      }
+
+      if (profile.role !== state.role) {
+        toast(
+          'Vai trò tài khoản không khớp với vai trò bạn đã chọn.'
+        );
+        await supabaseClient.auth.signOut();
+        return;
+      }
+
+      state.user = {
+        id: data.user.id,
+        email: profile.email,
+        name: profile.name,
+        role: profile.role
+      };
+
+      closeAuth();
+      showApp();
+
+      toast(
+        'Đăng nhập MEDINEX TECH thành công.'
+      );
+    }
+
+  } catch (error) {
+    console.error(
+      'MEDINEX Auth Error:',
+      error
+    );
+
+    toast(
+      'Có lỗi kết nối đến hệ thống xác thực.'
+    );
+
+  } finally {
+    submitBtn.disabled = false;
+  }
+});
 function showApp(){if(!state.user)return;$('landing').classList.add('hidden');$('app').classList.remove('hidden');$('topUserName').textContent=state.user.name;$('topUserRole').textContent=roleNames[state.user.role];$('userAvatar').textContent=(state.user.name||'M').trim().charAt(0).toUpperCase();$('dropdownAvatar').textContent=(state.user.name||'M').trim().charAt(0).toUpperCase();$('dropdownUserName').textContent=state.user.name;$('dropdownUserEmail').textContent=state.user.email;$('greeting').textContent='Xin chào, '+state.user.name.split(' ')[0]+' 👋';$('todayLabel').textContent=new Date().toLocaleDateString('vi-VN',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'});$('profileAvatar').textContent=(state.user.name||'M').charAt(0).toUpperCase();$('profileName').textContent=state.user.name;$('profileRole').textContent=roleNames[state.user.role];
 $('profileNameInput').value=state.user.name;
 $('profileEmailInput').value=state.user.email;
@@ -53,7 +239,61 @@ $('hcDate').min = todayISO();
 $('hcDate').value = todayISO();
 $('stDate').min=todayISO();$('stDate').value=todayISO();renderStudents();renderRecords();renderRecordProfile();renderRequests();goPage('overview')}
 function closeAccountMenu(){const menu=$('accountDropdown');if(menu)menu.hidden=true;$('userMenu').setAttribute('aria-expanded','false')}
-function logout(){if(!state.user)return;if(!confirm('Bạn có chắc chắn muốn đăng xuất khỏi MEDINEX TECH? Dữ liệu đã lưu trên trình duyệt sẽ được giữ nguyên.'))return;closeAccountMenu();state.user=null;setStore(STORE.session,null);$('app').classList.add('hidden');$('landing').classList.remove('hidden');$('sidebar').classList.remove('mobile-open');toast('Đã đăng xuất khỏi MEDINEX TECH.')}
+async function logout() {
+  if (!state.user) {
+    return;
+  }
+
+  if (
+    !confirm(
+      'Bạn có chắc chắn muốn đăng xuất khỏi MEDINEX TECH?'
+    )
+  ) {
+    return;
+  }
+
+  closeAccountMenu();
+
+  try {
+    const {
+      error
+    } = await supabaseClient.auth.signOut();
+
+    if (error) {
+      toast(
+        'Đăng xuất thất bại: ' +
+        error.message
+      );
+      return;
+    }
+
+    state.user = null;
+
+    localStorage.removeItem(
+      STORE.session
+    );
+
+    $('app').classList.add('hidden');
+    $('landing').classList.remove('hidden');
+    $('sidebar').classList.remove(
+      'mobile-open'
+    );
+
+    toast(
+      'Đã đăng xuất khỏi MEDINEX TECH.'
+    );
+
+  } catch (error) {
+    console.error(
+      'MEDINEX Logout Error:',
+      error
+    );
+
+    toast(
+      'Có lỗi khi đăng xuất.'
+    );
+  }
+}
 $('sidebarLogout').addEventListener('click',logout);$('userMenu').addEventListener('click',e=>{e.stopPropagation();const menu=$('accountDropdown');menu.hidden=!menu.hidden;$('userMenu').setAttribute('aria-expanded',String(!menu.hidden))});$('dropdownProfile').addEventListener('click',()=>{closeAccountMenu();goPage('profile')});$('dropdownLogout').addEventListener('click',logout);document.addEventListener('click',e=>{if(!$('accountMenuWrap').contains(e.target))closeAccountMenu()});$('notifications').addEventListener('click',()=>toast('Bạn chưa có thông báo mới trong bản demo.'));
 function goPage(page,updateHistory=true){
 const allowed=['overview','homecare','students','records','sos','requests','profile'];
@@ -98,12 +338,12 @@ function getRequests() {
 }
 function addRequest(request){const all=getStore(STORE.requests,[]);all.unshift({...request,owner:state.user.email,id:'MN-'+Date.now().toString().slice(-8),createdAt:new Date().toISOString(),status:'Chờ xác nhận (demo)'});return setStore(STORE.requests,all)}
 function renderRequests() {
-  const isStaff =
+      const isStaff =
     state.user &&
     state.user.role === 'staff';
 
   const requests =
-    getRequests();
+  getRequests();
     const target=$('allRequests'),recent=$('recentRequests');if(!requests.length){target.innerHTML='<div class="empty-inline">Chưa có yêu cầu nào được lưu.</div>';recent.innerHTML='<div class="empty-state"><span>◷</span><b>Chưa có yêu cầu nào</b><small>Khi bạn đặt dịch vụ, thông tin sẽ xuất hiện tại đây.</small></div>';return}const make = (r, withDelete) => `
   <article class="request-item">
     <span class="request-type-icon">
@@ -1544,10 +1784,162 @@ out.hidden=false;out.className='ai-result '+kind;
 out.innerHTML=`<b>${esc(title)}</b><p>${esc(body)}</p><p><strong>Gợi ý:</strong> ${esc(advice)}</p><small>Đây là phản hồi demo dựa trên từ khóa, không phải AI lâm sàng, không chẩn đoán và không thay thế bác sĩ.</small>`;
 });
 $('globalSearch').addEventListener('keydown',e=>{if(e.key!=='Enter')return;const q=e.target.value.trim().toLocaleLowerCase('vi');if(!q){toast('Nhập từ khóa để tìm trong các chức năng.');return}const pages=[['homecare','y tế tại nhà đặt dịch vụ chăm sóc khám'],['students','thuê sinh viên hỗ trợ tại viện'],['records','bệnh án số hồ sơ sức khỏe người thân thuốc xét nghiệm'],['sos','sos cấp cứu khẩn cấp'],['requests','lịch sử yêu cầu lịch hẹn'],['profile','hồ sơ cá nhân tài khoản']];const found=pages.find(p=>(p[1]+' '+p[0]).includes(q));if(found){goPage(found[0]);toast('Đã mở mục phù hợp với tìm kiếm.')}else toast('Chưa tìm thấy mục phù hợp. Thử “dịch vụ”, “sinh viên”, “bệnh án” hoặc “SOS”.')});
-// Resume only a demo session, never a server-authenticated session.
-const session=getStore(STORE.session,null);if(session&&session.email&&session.role&&roleNames[session.role]){
-state.user=session;showApp();
-const route=location.hash.match(/^#app\/(overview|homecare|students|records|sos|requests|profile)$/);
-if(route)goPage(route[1],false);
+async function loadSupabaseUser(session) {
+  if (!session || !session.user) {
+    return null;
+  }
+
+  const {
+    data: profile,
+    error
+  } = await supabaseClient
+    .from('profiles')
+    .select('*')
+    .eq('id', session.user.id)
+    .single();
+
+  if (error || !profile) {
+    console.error(
+      'MEDINEX Profile Load Error:',
+      error
+    );
+
+    return null;
+  }
+
+  return {
+    id: session.user.id,
+    email:
+      profile.email ||
+      session.user.email ||
+      '',
+    name:
+      profile.name ||
+      session.user.email?.split('@')[0] ||
+      'Người dùng',
+    role:
+      profile.role ||
+      'patient'
+  };
 }
+
+
+function restoreAppRoute() {
+  const route =
+    location.hash.match(
+      /^#app\/(overview|homecare|students|records|sos|requests|profile)$/
+    );
+
+  if (route) {
+    goPage(
+      route[1],
+      false
+    );
+  }
+}
+
+
+async function restoreSupabaseSession() {
+  try {
+    const {
+      data,
+      error
+    } = await supabaseClient.auth.getSession();
+
+    if (error) {
+      console.error(
+        'MEDINEX Session Error:',
+        error
+      );
+      return;
+    }
+
+    if (!data.session) {
+      return;
+    }
+
+    const user =
+      await loadSupabaseUser(
+        data.session
+      );
+
+    if (!user) {
+      return;
+    }
+
+    state.user = user;
+
+    showApp();
+    restoreAppRoute();
+
+  } catch (error) {
+    console.error(
+      'MEDINEX Restore Error:',
+      error
+    );
+  }
+}
+
+
+supabaseClient.auth.onAuthStateChange(
+  (event, session) => {
+
+    if (
+      event === 'SIGNED_IN' &&
+      session
+    ) {
+      setTimeout(async () => {
+
+        const user =
+          await loadSupabaseUser(
+            session
+          );
+
+        if (!user) {
+          return;
+        }
+
+        state.user = user;
+
+        if (
+          $('app').classList.contains(
+            'hidden'
+          )
+        ) {
+          showApp();
+          restoreAppRoute();
+        }
+
+      }, 0);
+    }
+
+
+    if (
+      event === 'SIGNED_OUT'
+    ) {
+      state.user = null;
+
+      localStorage.removeItem(
+        STORE.session
+      );
+
+      $('app').classList.add(
+        'hidden'
+      );
+
+      $('landing').classList.remove(
+        'hidden'
+      );
+
+      $('sidebar').classList.remove(
+        'mobile-open'
+      );
+    }
+
+  }
+);
+
+
+restoreSupabaseSession();
+
 })();
