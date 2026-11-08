@@ -359,8 +359,98 @@ function getRequests() {
       request.owner === state.user.email
   );
 }
-function addRequest(request){const all=getStore(STORE.requests,[]);all.unshift({...request,owner:state.user.email,id:'MN-'+Date.now().toString().slice(-8),createdAt:new Date().toISOString(),status:'Chờ xác nhận (demo)'});return setStore(STORE.requests,all)}
-function renderRequests() {
+async function addRequest(request) {
+  const requestId =
+    'MN-' +
+    Date.now().toString().slice(-8);
+
+  const createdAt =
+    new Date().toISOString();
+
+  const localRequest = {
+    ...request,
+    owner: state.user.email,
+    id: requestId,
+    createdAt,
+    status: 'Chờ xác nhận (demo)'
+  };
+
+  // Giữ localStorage để giao diện hiện tại
+  // vẫn hoạt động bình thường.
+  const all =
+    getStore(STORE.requests, []);
+
+  all.unshift(localRequest);
+
+  setStore(
+    STORE.requests,
+    all
+  );
+
+  // Nếu chưa đăng nhập thì chỉ lưu local.
+  if (!state.user?.id) {
+    return localRequest;
+  }
+
+  try {
+    const {
+      data,
+      error
+    } = await supabaseClient
+      .from('requests')
+      .insert({
+        owner_id: state.user.id,
+        kind: request.kind || '',
+        title: request.title || '',
+        hospital: request.hospital || '',
+        service: request.service || '',
+        student_id: request.studentId || '',
+        task: request.task || '',
+        request_date:
+        request.requestDate ||
+        request.date ||
+        null,
+        shift: request.shift || '',
+        note: request.note || '',
+        status: 'Chờ xác nhận (demo)'
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error(
+        'MEDINEX Request Insert Error:',
+        error
+      );
+
+      toast(
+        'Đã lưu yêu cầu trên máy, nhưng chưa đồng bộ lên hệ thống.'
+      );
+
+      return localRequest;
+    }
+
+    console.log(
+      'MEDINEX REQUEST SAVED:',
+      data
+    );
+
+    return localRequest;
+
+  } catch (error) {
+    console.error(
+      'MEDINEX Request Sync Error:',
+      error
+    );
+
+    toast(
+      'Đã lưu yêu cầu trên máy, nhưng chưa đồng bộ lên hệ thống.'
+    );
+
+    return localRequest;
+  }
+}
+  function renderRequests() {
       const isStaff =
     state.user &&
     state.user.role === 'staff';
