@@ -1,7 +1,15 @@
 (function(){
 'use strict';
 const $=(id)=>document.getElementById(id);
-const state={mode:'login',role:'patient',user:null,service:'Chăm sóc người bệnh tại nhà',recordTab:'timeline',students:[]};
+const state = {
+  mode: 'login',
+  role: 'patient',
+  user: null,
+  service: 'Chăm sóc người bệnh tại nhà',
+  recordTab: 'timeline',
+  students: [],
+  requests: null
+};
 const roleNames={patient:'Người bệnh / Người nhà',staff:'Cán bộ y tế',student:'Sinh viên hỗ trợ tại viện'};
 const STORE={users:'mnv2_users',session:'mnv2_session',requests:'mnv2_requests',contact:'mnv2_emergency_contact',profile:'mnv2_profile',records:'mnv2_records'};
 function safeParse(value,fallback){try{return JSON.parse(value)||fallback}catch(e){return fallback}}
@@ -260,7 +268,8 @@ if (emergencyRow) {
 
 $('hcDate').min = todayISO();
 $('hcDate').value = todayISO();
-$('stDate').min=todayISO();$('stDate').value=todayISO();renderStudents();renderRecords();renderRecordProfile();renderRequests();goPage('overview')}
+$('stDate').min=todayISO();$('stDate').value=todayISO();renderStudents();renderRecords();renderRecordProfile();renderRequests();loadSupabaseRequests();
+goPage('overview')}
 function closeAccountMenu(){const menu=$('accountDropdown');if(menu)menu.hidden=true;$('userMenu').setAttribute('aria-expanded','false')}
 async function logout() {
   if (!state.user) {
@@ -341,7 +350,9 @@ function getRequests() {
   }
 
   const allRequests =
-    getStore(STORE.requests, []);
+    state.requests !== null
+      ? state.requests
+      : getStore(STORE.requests, []);
 
   if (state.user.role === 'staff') {
     return allRequests;
@@ -356,8 +367,92 @@ function getRequests() {
 
   return allRequests.filter(
     request =>
+      request.ownerId === state.user.id ||
       request.owner === state.user.email
   );
+}
+async function loadSupabaseRequests() {
+  if (!state.user?.id) {
+    return;
+  }
+
+  try {
+    const {
+      data,
+      error
+    } = await supabaseClient
+      .from('requests')
+      .select('*')
+      .order('created_at', {
+        ascending: false
+      });
+
+    if (error) {
+      console.error(
+        'MEDINEX Request Load Error:',
+        error
+      );
+
+      return;
+    }
+
+    const normalizedRequests =
+      (data || []).map(row => ({
+        id: row.id,
+        ownerId: row.owner_id,
+        owner: row.owner_id,
+
+        kind: row.kind,
+        title: row.title || '',
+        hospital: row.hospital || '',
+        service: row.service || '',
+        studentId: row.student_id || '',
+        task: row.task || '',
+
+        date:
+          row.request_date ||
+          '',
+
+        time:
+          row.shift ||
+          '',
+
+        note:
+          row.note ||
+          '',
+
+        status:
+          row.status ||
+          'Chờ xác nhận (demo)',
+
+        createdAt:
+          row.created_at,
+
+        updatedAt:
+          row.updated_at
+      }));
+
+    state.requests =
+      normalizedRequests;
+
+    setStore(
+      STORE.requests,
+      normalizedRequests
+    );
+
+    renderRequests();
+
+    console.log(
+      'MEDINEX REQUESTS LOADED:',
+      normalizedRequests
+    );
+
+  } catch (error) {
+    console.error(
+      'MEDINEX Request Load Sync Error:',
+      error
+    );
+  }
 }
 async function addRequest(request) {
   const requestId =
@@ -586,62 +681,48 @@ target
   .forEach(button => {
     button.addEventListener(
       'click',
-      () => {
+      async () => {
         const requestId =
           button.dataset.confirmRequest;
 
-        const allRequests =
-          getStore(
-            STORE.requests,
-            []
-          );
-
-        const request =
-          allRequests.find(
-            item =>
-              String(item.id) ===
-              String(requestId)
-          );
-
-        if (!request) {
+        if (!requestId) {
           toast(
-            'Không tìm thấy yêu cầu.'
+            'Không xác định được yêu cầu.'
           );
           return;
         }
 
-        if (
-          request.status !==
-          'Chờ xác nhận (demo)'
-        ) {
+        const {
+          data,
+          error
+        } = await supabaseClient
+          .from('requests')
+          .update({
+            status: 'Đã xác nhận'
+          })
+          .eq('id', requestId)
+          .select()
+          .single();
+
+        if (error) {
+          console.error(
+            'MEDINEX Request Update Error:',
+            error
+          );
+
           toast(
-            'Yêu cầu này đã được xử lý.'
+            'Không thể cập nhật yêu cầu trên hệ thống.'
           );
+
           return;
         }
 
-        request.status =
-          'Đã xác nhận';
+        console.log(
+          'MEDINEX REQUEST UPDATED:',
+          data
+        );
 
-        request.confirmedBy =
-          state.user.email;
-
-        request.confirmedRole =
-          state.user.role;
-
-        request.confirmedAt =
-          new Date().toISOString();
-
-        if (
-          !setStore(
-            STORE.requests,
-            allRequests
-          )
-        ) {
-          return;
-        }
-
-        renderRequests();
+        await loadSupabaseRequests();
 
         toast(
           'Đã xác nhận yêu cầu của người bệnh.'
@@ -650,7 +731,6 @@ target
     );
   });
 }
-
 let pendingHomecareData = null;
 
 $('homecareForm').addEventListener('submit', e => {
@@ -776,6 +856,7 @@ $('confirmHomecareBtn').addEventListener(
     );
 
     renderRequests();
+    loadSupabaseRequests();
 
     toast(
       'Đã lưu yêu cầu demo. Chưa gửi đến nhà cung cấp dịch vụ.'
@@ -2066,5 +2147,96 @@ supabaseClient.auth.onAuthStateChange(
 
 
 restoreSupabaseSession();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('./sw.js')
+      .then(() => {
+        console.log(
+          'MEDINEX PWA: Service Worker registered.'
+        );
+      })
+      .catch(error => {
+        console.error(
+          'MEDINEX PWA: Service Worker registration failed:',
+          error
+        );
+      });
+  });
+}
+
+let deferredInstallPrompt = null;
+
+window.addEventListener(
+  'beforeinstallprompt',
+  event => {
+    event.preventDefault();
+
+    deferredInstallPrompt = event;
+
+    const installButton =
+      document.getElementById(
+        'installAppBtn'
+      );
+
+    if (!installButton) {
+      return;
+    }
+
+    installButton.hidden = false;
+  }
+);
+
+window.addEventListener(
+  'appinstalled',
+  () => {
+    deferredInstallPrompt = null;
+
+    const installButton =
+      document.getElementById(
+        'installAppBtn'
+      );
+
+    if (installButton) {
+      installButton.hidden = true;
+    }
+
+    console.log(
+      'MEDINEX PWA: App installed.'
+    );
+  }
+);
+
+const installAppButton =
+  document.getElementById(
+    'installAppBtn'
+  );
+
+if (installAppButton) {
+  installAppButton.addEventListener(
+    'click',
+    async () => {
+      if (!deferredInstallPrompt) {
+        toast(
+          'Trình duyệt chưa sẵn sàng cài ứng dụng.'
+        );
+        return;
+      }
+
+      deferredInstallPrompt.prompt();
+
+      const choice =
+        await deferredInstallPrompt.userChoice;
+
+      console.log(
+        'MEDINEX PWA install choice:',
+        choice.outcome
+      );
+
+      deferredInstallPrompt = null;
+    }
+  );
+}
 
 })();

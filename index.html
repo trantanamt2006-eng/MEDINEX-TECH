@@ -1,6 +1,13 @@
   <!doctype html>
   <html lang="vi">
   <head>
+    <link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0f766e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="MEDINEX">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#073f4a"><title>MEDINEX TECH — Dịch vụ chăm sóc sức khỏe</title>
   <link rel="stylesheet" href="css/style.css">
@@ -9,7 +16,30 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <!-- Public landing -->
   <div id="landing" class="landing">
-    <header class="public-nav wrap"><a class="brand" href="#home"><span class="brand-mark">M<span>+</span></span><span><b>MEDINEX TECH</b><small>DỊCH VỤ CHĂM SÓC SỨC KHỎE</small></span></a><nav><a href="#services-public">Dịch vụ</a><a href="#how">Cách hoạt động</a><a href="#about">Về chúng tôi</a></nav><div class="nav-actions"><button class="btn btn-quiet" data-open-auth="login">Đăng nhập</button><button class="btn btn-primary" data-open-auth="register">Tạo tài khoản <span>↗</span></button></div></header>
+<div class="nav-actions">
+  <button
+    class="btn btn-quiet"
+    id="installAppBtn"
+    type="button"
+    hidden
+  >
+    📲 Cài ứng dụng
+  </button>
+
+  <button
+    class="btn btn-quiet"
+    data-open-auth="login"
+  >
+    Đăng nhập
+  </button>
+
+  <button
+    class="btn btn-primary"
+    data-open-auth="register"
+  >
+    Tạo tài khoản <span>↗</span>
+  </button>
+</div>
     <main id="home"><section class="hero wrap"><div class="hero-copy"><div class="eyebrow"><i></i> Chăm sóc sức khỏe trong tầm tay</div><h1>Chủ động chăm sóc.<br><em>An tâm mỗi ngày.</em></h1><p>MEDINEX TECH kết nối người bệnh, gia đình và đội ngũ hỗ trợ trong một trải nghiệm chăm sóc sức khỏe thuận tiện, rõ ràng và lấy con người làm trung tâm.</p><div class="hero-actions"><button class="btn btn-primary btn-lg" data-open-auth="register">Khám phá nền tảng <span>→</span></button><a class="btn btn-outline btn-lg" href="#services-public">Xem dịch vụ ↓</a></div><div class="hero-points"><span>✓ Kết nối dịch vụ</span><span>✓ Theo dõi thông tin</span><span>✓ Trải nghiệm dễ dùng</span></div></div><div class="hero-art"><div class="art-circle"><div class="art-cross">✚</div><div class="art-ring"></div></div><div class="float-note note-one"><span class="note-icon mint">⌂</span><span><b>Chăm sóc tại nhà</b><small>Kết nối nhu cầu phù hợp</small></span></div><div class="float-note note-two"><span class="note-icon blue">♡</span><span><b>Thông tin sức khỏe</b><small>Theo dõi thuận tiện hơn</small></span></div><div class="art-caption"><span class="status-dot"></span> Một nền tảng — nhiều cách chăm sóc</div></div></section>
     <section class="public-section wrap" id="services-public"><div class="section-heading"><span class="eyebrow">HỆ SINH THÁI DỊCH VỤ</span><h2>Đồng hành trong hành trình chăm sóc</h2><p>Bốn chức năng cốt lõi được thiết kế để hỗ trợ người bệnh và gia đình tiếp cận dịch vụ thuận tiện hơn.</p></div><div class="public-cards"><article><span class="big-icon">⌂</span><h3>Y tế tại nhà</h3><p>Gửi yêu cầu chăm sóc và theo dõi trạng thái đặt dịch vụ.</p><button class="text-link" data-open-auth="register">Khám phá dịch vụ →</button></article><article><span class="big-icon">♙</span><h3>Thuê sinh viên hỗ trợ tại viện</h3><p>Tìm người hỗ trợ phù hợp theo ca trực và nhu cầu.</p><button class="text-link" data-open-auth="register">Tìm người hỗ trợ →</button></article><article><span class="big-icon">▤</span><h3>Hồ sơ sức khoẻ</h3><p>Theo dõi thông tin được chia sẻ và cập nhật chăm sóc.</p><button class="text-link" data-open-auth="register">Xem cách hoạt động →</button></article><article class="public-sos"><span class="big-icon">✳</span><h3>SOS cấp cứu</h3><p>Truy cập nhanh thông tin liên hệ khẩn cấp.</p><button class="text-link" data-open-auth="register">Tìm hiểu thêm →</button></article></div></section>
     <section class="how-section" id="how"><div class="wrap how-inner"><div><span class="eyebrow">BẮT ĐẦU ĐƠN GIẢN</span><h2>Một trải nghiệm rõ ràng,<br>từ kết nối đến theo dõi.</h2></div><div class="how-steps"><div><b>01</b><span><strong>Tạo tài khoản</strong><small>Chọn đúng vai trò để sử dụng các tiện ích.</small></span></div><div><b>02</b><span><strong>Chọn chức năng</strong><small>Gửi yêu cầu, tìm người hỗ trợ hoặc xem thông tin.</small></span></div><div><b>03</b><span><strong>Theo dõi trạng thái</strong><small>Quản lý thông tin trong khu vực tài khoản.</small></span></div></div></div></section>
