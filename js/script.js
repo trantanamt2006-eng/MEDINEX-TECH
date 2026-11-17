@@ -10,7 +10,17 @@ const state = {
   students: [],
   requests: null
 };
-const roleNames={patient:'Người bệnh / Người nhà',staff:'Cán bộ y tế',student:'Sinh viên hỗ trợ tại viện'};
+const roleNames = {
+  patient: 'Người bệnh / Người nhà',
+  staff: 'Bác sĩ / Điều dưỡng',
+  student: 'Sinh viên hỗ trợ'
+};
+
+const roleDescriptions = {
+  patient: 'Quản lý hồ sơ sức khỏe, đặt dịch vụ và kết nối chăm sóc.',
+  staff: 'Tiếp nhận người bệnh, quản lý ca và thực hiện chăm sóc.',
+  student: 'Nhận ca hỗ trợ và đồng hành cùng người bệnh tại bệnh viện.'
+};
 const STORE={users:'mnv2_users',session:'mnv2_session',requests:'mnv2_requests',contact:'mnv2_emergency_contact',profile:'mnv2_profile',records:'mnv2_records'};
 function safeParse(value,fallback){try{return JSON.parse(value)||fallback}catch(e){return fallback}}
 function getStore(key,fallback){return safeParse(localStorage.getItem(key),fallback)}
@@ -19,13 +29,141 @@ function toast(message){const el=$('toast');el.textContent=message;el.classList.
 function esc(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function todayISO(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
 function dateLabel(date){if(!date)return 'Chưa chọn ngày';const d=new Date(date+'T12:00:00');return Number.isNaN(d.getTime())?date:d.toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric'})}
-function openAuth(mode){state.mode=mode||'login';$('authLayer').classList.remove('hidden');$('roleChoices').classList.remove('hidden');$('authForm').classList.add('hidden');$('authTitle').textContent=state.mode==='register'?'Tạo tài khoản MEDINEX':'Chào mừng bạn trở lại';$('authDescription').textContent='Chọn vai trò để tiếp tục.'}
-function closeAuth(){$('authLayer').classList.add('hidden')}
-document.querySelectorAll('[data-open-auth]').forEach(b=>b.addEventListener('click',()=>openAuth(b.dataset.openAuth)));
-document.querySelectorAll('[data-close-auth]').forEach(b=>b.addEventListener('click',closeAuth));
-document.querySelectorAll('[data-role]').forEach(b=>b.addEventListener('click',()=>{state.role=b.dataset.role;$('roleChoices').classList.add('hidden');$('authForm').classList.remove('hidden');$('authTitle').textContent=state.mode==='register'?'Tạo tài khoản demo':'Đăng nhập demo';$('authDescription').textContent='Vai trò: '+roleNames[state.role];$('nameLabel').classList.toggle('hidden',state.mode!=='register');$('authName').classList.toggle('hidden',state.mode!=='register');$('authName').required=state.mode==='register';$('authPassword').autocomplete=state.mode==='register'?'new-password':'current-password';$('authSubmit').textContent=state.mode==='register'?'Tạo tài khoản demo →':'Đăng nhập →';$('authSwitchText').textContent=state.mode==='register'?'Đã có tài khoản?':'Chưa có tài khoản?';$('authSwitch').textContent=state.mode==='register'?'Đăng nhập':'Đăng ký';$('authName').value='';$('authEmail').value='';$('authPassword').value=''}));
-$('backRoles').addEventListener('click',()=>{$('roleChoices').classList.remove('hidden');$('authForm').classList.add('hidden')});
-$('authSwitch').addEventListener('click',()=>{state.mode=state.mode==='register'?'login':'register';$('authTitle').textContent=state.mode==='register'?'Tạo tài khoản demo':'Đăng nhập demo';$('nameLabel').classList.toggle('hidden',state.mode!=='register');$('authName').classList.toggle('hidden',state.mode!=='register');$('authName').required=state.mode==='register';$('authPassword').autocomplete=state.mode==='register'?'new-password':'current-password';$('authSubmit').textContent=state.mode==='register'?'Tạo tài khoản demo →':'Đăng nhập →';$('authSwitchText').textContent=state.mode==='register'?'Đã có tài khoản?':'Chưa có tài khoản?';$('authSwitch').textContent=state.mode==='register'?'Đăng nhập':'Đăng ký'});
+function openAuth(mode) {
+  state.mode = mode || 'login';
+
+  $('authLayer').classList.remove('hidden');
+  $('roleChoices').classList.remove('hidden');
+  $('authForm').classList.add('hidden');
+
+  $('authTitle').textContent =
+    state.mode === 'register'
+      ? 'Tạo tài khoản MEDINEX'
+      : 'Chào mừng bạn trở lại';
+
+  $('authDescription').textContent =
+    'Chọn vai trò để tiếp tục.';
+}
+
+function closeAuth() {
+  $('authLayer').classList.add('hidden');
+}
+
+function updateAuthForm() {
+  const isRegister = state.mode === 'register';
+  const role = state.role;
+
+  $('authTitle').textContent = isRegister
+    ? 'Tạo tài khoản'
+    : 'Đăng nhập tài khoản';
+
+  $('authDescription').textContent =
+    roleDescriptions[role];
+
+  $('nameLabel').classList.toggle(
+    'hidden',
+    !isRegister
+  );
+
+  $('authName').classList.toggle(
+    'hidden',
+    !isRegister
+  );
+
+  $('authName').required = isRegister;
+
+  $('authPassword').autocomplete =
+    isRegister
+      ? 'new-password'
+      : 'current-password';
+
+  $('authSubmit').textContent =
+    isRegister
+      ? 'Tạo tài khoản →'
+      : 'Đăng nhập →';
+
+  $('authSwitchText').textContent =
+    isRegister
+      ? 'Đã có tài khoản?'
+      : 'Chưa có tài khoản?';
+
+  $('authSwitch').textContent =
+    isRegister
+      ? 'Đăng nhập'
+      : 'Đăng ký';
+}
+
+document
+  .querySelectorAll('[data-open-auth]')
+  .forEach(button => {
+    button.addEventListener(
+      'click',
+      () => openAuth(button.dataset.openAuth)
+    );
+  });
+
+document
+  .querySelectorAll('[data-close-auth]')
+  .forEach(button => {
+    button.addEventListener(
+      'click',
+      closeAuth
+    );
+  });
+
+document
+  .querySelectorAll('[data-role]')
+  .forEach(button => {
+
+    button.addEventListener(
+      'click',
+      () => {
+
+        state.role =
+          button.dataset.role;
+
+        $('roleChoices')
+          .classList.add('hidden');
+
+        $('authForm')
+          .classList.remove('hidden');
+
+        $('authName').value = '';
+        $('authEmail').value = '';
+        $('authPassword').value = '';
+
+        updateAuthForm();
+      }
+    );
+
+  });
+
+$('backRoles').addEventListener(
+  'click',
+  () => {
+
+    $('roleChoices')
+      .classList.remove('hidden');
+
+    $('authForm')
+      .classList.add('hidden');
+
+  }
+);
+
+$('authSwitch').addEventListener(
+  'click',
+  () => {
+
+    state.mode =
+      state.mode === 'register'
+        ? 'login'
+        : 'register';
+
+    updateAuthForm();
+
+  }
+);
 $('authForm').addEventListener('submit', async e => {
   e.preventDefault();
 

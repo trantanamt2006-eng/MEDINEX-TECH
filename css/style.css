@@ -2899,11 +2899,13 @@
 .auth-visual-image {
   position: relative;
 
-  width: min(78%, 720px);
+  width: min(64%, 620px);
   aspect-ratio: 1 / 1;
 
   display: grid;
   place-items: center;
+
+  transform: translateY(-5%);
 
   z-index: 2;
 }
@@ -2929,7 +2931,7 @@
 .auth-image-placeholder {
   position: relative;
 
-  width: 58%;
+  width: 46%;
   aspect-ratio: 1 / 1;
 
   display: flex;
@@ -2992,7 +2994,9 @@
   position: absolute;
 
   left: 9%;
-  bottom: 8%;
+  bottom: 7%;
+
+  z-index: 5;
 
   z-index: 5;
 
@@ -3005,8 +3009,11 @@
   color: var(--deep);
 
   font-size:
-    clamp(30px, 3.4vw, 50px);
+    clamp(28px, 3vw, 44px);
 
+  line-height: 1.12;
+
+  letter-spacing: -1.7px;
   line-height: 1.12;
 
   letter-spacing: -1.7px;
