@@ -47,7 +47,261 @@
     <footer class="public-footer"><div class="wrap footer-inner"><a class="brand" href="#home"><span class="brand-mark">M<span>+</span></span><span><b>MEDINEX TECH</b><small>DỊCH VỤ CHĂM SÓC SỨC KHỎE</small></span></a><span>© 2026 MEDINEX TECH · Bản xem trước giao diện</span></div><p class="wrap disclaimer">Lưu ý: Đây l à bản demo giao diện, chưa cung cấp dịch vụ y tế thực tế. SOS chưa kết nối tổng đài hoặc cơ quan cấp cứu. Không sử dụng bản demo để xử lý tình huống khẩn cấp; tại Việt Nam, hãy gọi 115 khi cần cấp cứu y tế.</p></footer>
   </div>
   <!-- Authentication -->
-  <div id="authLayer" class="auth-layer hidden"><div class="auth-backdrop" data-close-auth></div><section class="auth-card" role="dialog" aria-modal="true" aria-labelledby="authTitle"><button class="icon-button auth-close" data-close-auth aria-label="Đóng">×</button><a class="brand auth-brand" href="#home"><span class="brand-mark">M<span>+</span></span><span><b>MEDINEX TECH</b><small>DỊCH VỤ CHĂM SÓC SỨC KHỎE</small></span></a><div class="auth-intro"><span class="eyebrow">KHÔNG GIAN TÀI KHOẢN</span><h2 id="authTitle">Chào mừng bạn</h2><p id="authDescription">Chọn vai trò để tiếp tục.</p></div><div id="roleChoices" class="role-choices"><button class="role-choice" data-role="patient"><span>♧</span><b>Người bệnh / Người nhà</b><small>Đặt dịch vụ và theo dõi thông tin được chia sẻ.</small><i>→</i></button><button class="role-choice" data-role="staff"><span>✚</span><b>Cán bộ y tế</b><small>Quản lý yêu cầu và cập nhật thông tin theo quyền.</small><i>→</i></button><button class="role-choice" data-role="student"><span>♙</span><b>Sinh viên hỗ trợ tại viện</b><small>Thiết lập hồ sơ và xem yêu cầu hỗ trợ.</small><i>→</i></button></div><form id="authForm" class="auth-form hidden"><label for="authName" id="nameLabel">Họ và tên</label><input id="authName" autocomplete="name" placeholder="Nhập họ và tên" maxlength="100"><label for="authEmail">Email</label><input id="authEmail" type="email" autocomplete="email" placeholder="ban@email.com" required maxlength="180"><label for="authPassword">Mật khẩu</label><input id="authPassword" type="password" autocomplete="current-password" minlength="8" placeholder="Tối thiểu 8 ký tự" required><p class="form-hint">Tài khoản hiện được lưu cục bộ trên trình duyệt để trình diễn. Chưa có xác thực máy chủ.</p><button class="btn btn-primary btn-full" id="authSubmit" type="submit">Đăng nhập →</button><div class="auth-switch"><span id="authSwitchText">Chưa có tài khoản?</span><button type="button" id="authSwitch">Đăng ký</button></div><button type="button" class="back-role" id="backRoles">← Chọn vai trò khác</button></form></section></div>
+<div
+  id="authLayer"
+  class="auth-layer hidden"
+>
+
+  <div
+    class="auth-backdrop"
+    data-close-auth
+  ></div>
+
+  <section
+    class="auth-card"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="authTitle"
+  >
+
+    <button
+      class="icon-button auth-close"
+      data-close-auth
+      aria-label="Đóng"
+    >
+      ×
+    </button>
+
+    <!-- LEFT VISUAL -->
+    <div class="auth-visual">
+
+      <div class="auth-visual-image">
+        <div class="auth-visual-glow"></div>
+
+        <!-- Tạm thời dùng ảnh placeholder.
+             Sau khi m đặt ảnh MEDINEX vào assets,
+             mình sẽ thay đúng đường dẫn ở đây. -->
+
+        <div class="auth-image-placeholder">
+          <span>MEDINEX</span>
+          <b>TECH</b>
+        </div>
+      </div>
+
+      <div class="auth-visual-copy">
+
+        <span class="eyebrow">
+          MEDINEX TECH
+        </span>
+
+        <h2>
+          Kết nối chăm sóc.
+          <br>
+          An tâm mỗi ngày.
+        </h2>
+
+        <p>
+          Kết nối người bệnh, gia đình và
+          đội ngũ chăm sóc sức khỏe trong
+          một hệ sinh thái số thuận tiện,
+          minh bạch và lấy con người làm trung tâm.
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT AUTH -->
+    <div class="auth-content">
+
+      <a
+        class="brand auth-brand"
+        href="#home"
+      >
+        <span class="brand-mark">
+          M<span>+</span>
+        </span>
+
+        <span>
+          <b>MEDINEX TECH</b>
+          <small>
+            DỊCH VỤ CHĂM SÓC SỨC KHỎE
+          </small>
+        </span>
+      </a>
+
+      <div class="auth-intro">
+
+        <span class="eyebrow">
+          KHÔNG GIAN TÀI KHOẢN
+        </span>
+
+        <h2 id="authTitle">
+          Chào mừng bạn
+        </h2>
+
+        <p id="authDescription">
+          Chọn vai trò để tiếp tục.
+        </p>
+
+      </div>
+
+      <div
+        id="roleChoices"
+        class="role-choices"
+      >
+
+        <button
+          class="role-choice"
+          data-role="patient"
+        >
+
+          <span>👤</span>
+
+          <b>
+            Người bệnh / Người nhà
+          </b>
+
+          <small>
+            Một tài khoản có thể quản lý
+            hồ sơ của bạn và người thân
+            được ủy quyền.
+          </small>
+
+          <i>→</i>
+
+        </button>
+
+        <button
+          class="role-choice"
+          data-role="staff"
+        >
+
+          <span>👨‍⚕️</span>
+
+          <b>
+            Bác sĩ / Điều dưỡng
+          </b>
+
+          <small>
+            Tiếp nhận ca, quản lý người bệnh
+            và thực hiện chăm sóc.
+          </small>
+
+          <i>→</i>
+
+        </button>
+
+        <button
+          class="role-choice"
+          data-role="student"
+        >
+
+          <span>🎓</span>
+
+          <b>
+            Sinh viên hỗ trợ
+          </b>
+
+          <small>
+            Nhận ca hỗ trợ và đồng hành
+            cùng người bệnh tại bệnh viện.
+          </small>
+
+          <i>→</i>
+
+        </button>
+
+      </div>
+
+      <form
+        id="authForm"
+        class="auth-form hidden"
+      >
+
+        <label
+          for="authName"
+          id="nameLabel"
+        >
+          Họ và tên
+        </label>
+
+        <input
+          id="authName"
+          autocomplete="name"
+          placeholder="Nhập họ và tên"
+          maxlength="100"
+        >
+
+        <label for="authEmail">
+          Email
+        </label>
+
+        <input
+          id="authEmail"
+          type="email"
+          autocomplete="email"
+          placeholder="ban@email.com"
+          required
+          maxlength="180"
+        >
+
+        <label for="authPassword">
+          Mật khẩu
+        </label>
+
+        <input
+          id="authPassword"
+          type="password"
+          autocomplete="current-password"
+          minlength="8"
+          placeholder="Tối thiểu 8 ký tự"
+          required
+        >
+
+        <p class="form-hint">
+          Thông tin tài khoản được bảo vệ
+          theo quyền truy cập của từng vai trò.
+        </p>
+
+        <button
+          class="btn btn-primary btn-full"
+          id="authSubmit"
+          type="submit"
+        >
+          Đăng nhập →
+        </button>
+
+        <div class="auth-switch">
+
+          <span id="authSwitchText">
+            Chưa có tài khoản?
+          </span>
+
+          <button
+            type="button"
+            id="authSwitch"
+          >
+            Đăng ký
+          </button>
+
+        </div>
+
+        <button
+          type="button"
+          class="back-role"
+          id="backRoles"
+        >
+          ← Chọn vai trò khác
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+</div>
   <!-- App -->
   <div id="app" class="app-shell hidden">
     <aside class="sidebar" id="sidebar"><a class="brand side-brand" href="#"><span class="brand-mark">M<span>+</span></span><span><b>MEDINEX TECH</b><small>DỊCH VỤ CHĂM SÓC SỨC KHỎE</small></span></a><div class="side-label">KHÔNG GIAN CỦA BẠN</div><nav class="side-nav" aria-label="Điều hướng chính"><button class="side-link active" data-page="overview"><span>▦</span>Trang chủ</button><button class="side-link" data-page="homecare"><span>⌂</span>Y tế tại nhà</button><button class="side-link" data-page="students"><span>♙</span>Thuê sinh viên BMU</button><button class="side-link" data-page="records"><span>▤</span>Hồ sơ sức khoẻ</button><button class="side-link" data-page="sos"><span>✳</span>SOS cấp cứu <i class="sos-mini"></i></button><button class="side-link" data-page="requests"><span>◷</span>Lịch sử yêu cầu</button><button class="side-link" data-page="profile"><span>♙</span>Hồ sơ cá nhân</button></nav><div class="sidebar-bottom"><div class="care-note"><span>♡</span><b>Chăm sóc bắt đầu từ sự quan tâm</b><small>Luôn ưu tiên an toàn và quyền riêng tư.</small></div><button id="sidebarLogout" class="logout-link">↪ Đăng xuất</button></div></aside>
