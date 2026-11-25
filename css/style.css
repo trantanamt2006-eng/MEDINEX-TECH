@@ -2895,21 +2895,6 @@
       transparent 55%
     );
 }
-
-.auth-visual-image {
-  position: relative;
-
-  width: min(64%, 620px);
-  aspect-ratio: 1 / 1;
-
-  display: grid;
-  place-items: center;
-
-  transform: translateY(-5%);
-
-  z-index: 2;
-}
-
 .auth-visual-glow {
   position: absolute;
 
@@ -2969,105 +2954,6 @@
   font-size: clamp(18px, 2.5vw, 30px);
 
   letter-spacing: 5px;
-}
-
-/* When real image is added */
-
-.auth-visual-image img {
-  position: relative;
-
-  z-index: 3;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: contain;
-
-  filter:
-    drop-shadow(
-      0 25px 45px
-      rgba(7,63,74,.14)
-    );
-}
-
-.auth-visual-copy {
-  position: absolute;
-
-  left: 9%;
-  bottom: 7%;
-
-  z-index: 5;
-
-  z-index: 5;
-
-  width: min(480px, 75%);
-}
-
-.auth-visual-copy h2 {
-  margin: 13px 0 0;
-
-  color: var(--deep);
-
-  font-size:
-    clamp(28px, 3vw, 44px);
-
-  line-height: 1.12;
-
-  letter-spacing: -1.7px;
-  line-height: 1.12;
-
-  letter-spacing: -1.7px;
-}
-
-.auth-visual-copy p {
-  max-width: 440px;
-
-  margin: 16px 0 0;
-
-  color: #718b95;
-
-  font-size: 12px;
-
-  line-height: 1.85;
-}
-
-/* =========================================================
-   RIGHT AUTH CONTENT
-   ========================================================= */
-
-.auth-content {
-  width: min(
-    470px,
-    calc(100% - 72px)
-  );
-
-  margin: auto;
-
-  padding: 40px 0;
-}
-
-.auth-brand {
-  margin-bottom: 42px;
-}
-
-.auth-intro h2 {
-  margin: 11px 0 7px;
-
-  font-size: 31px;
-
-  line-height: 1.2;
-
-  letter-spacing: -.9px;
-}
-
-.auth-intro p {
-  margin: 0;
-
-  color: var(--muted);
-
-  font-size: 12px;
-
-  line-height: 1.7;
 }
 
 /* =========================================================
@@ -3216,11 +3102,6 @@
     min-height: 330px;
   }
 
-  .auth-visual-image {
-    width: 58%;
-    max-width: 420px;
-  }
-
   .auth-visual-copy {
     left: 28px;
     bottom: 24px;
@@ -3256,9 +3137,6 @@
     min-height: 255px;
   }
 
-  .auth-visual-image {
-    width: 64%;
-  }
 
   .auth-visual-copy {
     display: none;
@@ -3295,4 +3173,4050 @@
     margin-bottom: 11px;
   }
 
+}
+/* =========================================================
+   PATIENT DASHBOARD — STEP 5.1
+   ========================================================= */
+
+.patient-dashboard {
+  padding-bottom: 60px;
+}
+
+
+/* HEADER */
+
+.patient-dashboard-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 28px;
+}
+
+.patient-welcome {
+  min-width: 0;
+}
+
+.patient-welcome h1 {
+  margin: 8px 0 7px;
+  color: var(--deep);
+  font-size: clamp(30px, 3vw, 43px);
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+}
+
+.patient-welcome p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.patient-date-card {
+  flex: 0 0 auto;
+  min-width: 150px;
+
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 12px 15px;
+
+  border: 1px solid var(--line);
+  border-radius: 16px;
+
+  background: #fff;
+
+  box-shadow:
+    0 10px 30px rgba(7, 63, 74, .045);
+}
+
+.patient-date-icon {
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 11px;
+
+  background: #e7f7f4;
+  color: var(--teal);
+
+  font-size: 18px;
+}
+
+.patient-date-card small {
+  display: block;
+
+  color: #8aa0a8;
+
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.patient-date-card b {
+  display: block;
+
+  margin-top: 3px;
+
+  color: var(--deep);
+
+  font-size: 11px;
+}
+
+
+/* AI */
+
+.patient-ai-card {
+  position: relative;
+
+  overflow: hidden;
+
+  margin-bottom: 38px;
+  padding: 28px 30px 22px;
+
+  border: 1px solid #cdebe7;
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f4fcfb 0%,
+      #ffffff 62%
+    );
+
+  box-shadow:
+    0 18px 45px rgba(8, 127, 120, .075);
+}
+
+.patient-ai-glow {
+  position: absolute;
+
+  width: 260px;
+  height: 260px;
+
+  right: -80px;
+  top: -120px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(19, 161, 150, .13),
+      rgba(19, 161, 150, 0)
+    );
+
+  pointer-events: none;
+}
+
+.patient-ai-content {
+  position: relative;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+
+  z-index: 1;
+}
+
+.patient-ai-mark {
+  width: 42px;
+  height: 42px;
+
+  flex: 0 0 42px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 13px;
+
+  background: var(--teal);
+  color: #fff;
+
+  font-size: 20px;
+
+  box-shadow:
+    0 9px 20px rgba(8, 127, 120, .18);
+}
+
+.patient-ai-content h2 {
+  margin: 6px 0 6px;
+
+  color: var(--deep);
+
+  font-size: 21px;
+  line-height: 1.25;
+  letter-spacing: -.5px;
+}
+
+.patient-ai-content p {
+  max-width: 650px;
+
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.patient-ai-form {
+  position: relative;
+
+  margin-top: 22px;
+
+  z-index: 1;
+}
+
+.patient-ai-input {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  padding: 12px 14px;
+
+  border: 1px solid #dceeed;
+  border-radius: 14px;
+
+  background: #fff;
+}
+
+.patient-ai-input > span {
+  color: var(--teal);
+  font-size: 15px;
+}
+
+.patient-ai-input textarea {
+  width: 100%;
+  min-height: 54px;
+
+  padding: 1px 0;
+
+  border: 0;
+  outline: 0;
+  resize: vertical;
+
+  background: transparent;
+
+  color: var(--ink);
+
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.patient-ai-input textarea::placeholder {
+  color: #a1b3b9;
+}
+
+.patient-ai-options {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+
+  margin-top: 10px;
+}
+
+.patient-ai-field {
+  width: 150px;
+}
+
+.patient-ai-field label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--ink);
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.patient-ai-field input,
+.patient-ai-field select {
+  width: 100%;
+  min-height: 42px;
+
+  padding: 0 11px;
+
+  border: 1px solid var(--line);
+  border-radius: 10px;
+
+  background: #fff;
+
+  color: var(--ink);
+
+  font: inherit;
+  font-size: 11px;
+}
+
+.patient-ai-submit {
+  min-height: 42px;
+
+  margin-left: auto;
+  padding: 0 20px;
+
+  border: 0;
+  border-radius: 10px;
+
+  background: var(--teal);
+  color: #fff;
+
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease;
+}
+
+.patient-ai-submit span {
+  margin-left: 7px;
+}
+
+.patient-ai-submit:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 10px 22px rgba(8, 127, 120, .18);
+}
+
+.patient-ai-disclaimer {
+  position: relative;
+
+  margin: 13px 0 0;
+
+  color: #93a6ad;
+
+  font-size: 8px;
+  line-height: 1.6;
+
+  z-index: 1;
+}
+
+.patient-ai-result {
+  margin-top: 15px;
+}
+
+
+/* SECTION HEADING */
+
+.patient-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-bottom: 14px;
+}
+
+.patient-section-heading h2 {
+  margin: 5px 0 0;
+
+  color: var(--deep);
+
+  font-size: 20px;
+  letter-spacing: -.5px;
+}
+
+.patient-section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--teal);
+
+  font: inherit;
+  font-size: 10px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.patient-section-link span {
+  font-size: 14px;
+}
+
+
+/* SERVICES */
+
+.patient-service-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-bottom: 36px;
+}
+
+.patient-service-card {
+  position: relative;
+
+  min-height: 168px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: 19px;
+
+  border: 1px solid var(--line);
+  border-radius: 17px;
+
+  background: #fff;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    transform .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease;
+}
+
+.patient-service-card:hover {
+  transform: translateY(-3px);
+
+  border-color: #8dd5cf;
+
+  box-shadow:
+    0 15px 35px rgba(8, 127, 120, .09);
+}
+
+.patient-service-icon {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 20px;
+
+  border-radius: 12px;
+
+  background: #e7f7f4;
+
+  color: var(--teal);
+
+  font-size: 18px;
+}
+
+.patient-service-copy {
+  display: block;
+}
+
+.patient-service-copy b {
+  display: block;
+
+  color: var(--deep);
+
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.patient-service-copy small {
+  display: block;
+
+  max-width: 180px;
+
+  margin-top: 7px;
+
+  color: var(--muted);
+
+  font-size: 9px;
+  line-height: 1.65;
+}
+
+.patient-service-arrow {
+  position: absolute;
+
+  right: 17px;
+  top: 18px;
+
+  color: var(--teal);
+
+  font-size: 15px;
+}
+
+.patient-service-sos .patient-service-icon {
+  background: #fff0f0;
+  color: #d65353;
+}
+
+.patient-service-sos:hover {
+  border-color: #efb6b6;
+}
+
+
+/* LOWER */
+
+.patient-dashboard-lower {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.35fr)
+    minmax(300px, .65fr);
+
+  gap: 16px;
+
+  margin-bottom: 18px;
+}
+
+.patient-appointment-panel,
+.patient-activity-panel {
+  min-height: 230px;
+  padding: 22px;
+}
+
+.patient-panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+
+  margin-bottom: 22px;
+}
+
+.patient-panel-heading h3 {
+  margin: 5px 0 0;
+
+  color: var(--deep);
+
+  font-size: 17px;
+  letter-spacing: -.4px;
+}
+
+
+/* APPOINTMENT */
+
+.patient-appointment-empty {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  min-height: 110px;
+
+  padding: 16px;
+
+  border: 1px dashed #d9e8e8;
+  border-radius: 14px;
+
+  background: #fbfdfd;
+}
+
+.patient-empty-icon {
+  width: 43px;
+  height: 43px;
+
+  flex: 0 0 43px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 13px;
+
+  background: #eef8f7;
+  color: var(--teal);
+
+  font-size: 17px;
+}
+
+.patient-appointment-empty b {
+  display: block;
+
+  color: var(--deep);
+
+  font-size: 11px;
+}
+
+.patient-appointment-empty p {
+  max-width: 450px;
+
+  margin: 6px 0 0;
+
+  color: var(--muted);
+
+  font-size: 9px;
+  line-height: 1.65;
+}
+
+
+/* ACTIVITY */
+
+.patient-recent-requests {
+  min-height: 110px;
+}
+
+.patient-activity-empty {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-height: 110px;
+
+  padding: 15px;
+
+  border-radius: 14px;
+
+  background: #f8fbfb;
+}
+
+.patient-activity-empty > span {
+  width: 39px;
+  height: 39px;
+
+  flex: 0 0 39px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 11px;
+
+  background: #eaf7f5;
+
+  color: var(--teal);
+}
+
+.patient-activity-empty b {
+  display: block;
+
+  color: var(--deep);
+
+  font-size: 10px;
+}
+
+.patient-activity-empty small {
+  display: block;
+
+  margin-top: 5px;
+
+  color: var(--muted);
+
+  font-size: 8px;
+  line-height: 1.55;
+}
+
+
+/* HEALTH NOTE */
+
+.patient-health-note {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 19px 21px;
+
+  border: 1px solid #dcefed;
+  border-radius: 17px;
+
+  background:
+    linear-gradient(
+      100deg,
+      #f2fbfa,
+      #fff
+    );
+}
+
+.patient-health-note-icon {
+  width: 44px;
+  height: 44px;
+
+  flex: 0 0 44px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 13px;
+
+  background: #dff4f1;
+
+  color: var(--teal);
+
+  font-size: 19px;
+}
+
+.patient-health-note h3 {
+  margin: 4px 0 3px;
+
+  color: var(--deep);
+
+  font-size: 13px;
+}
+
+.patient-health-note p {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+.patient-health-note-action {
+  margin-left: auto;
+
+  flex: 0 0 auto;
+
+  padding: 10px 13px;
+
+  border: 1px solid #c8e6e2;
+  border-radius: 10px;
+
+  background: #fff;
+
+  color: var(--teal);
+
+  font: inherit;
+  font-size: 9px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.patient-health-note-action span {
+  margin-left: 5px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+
+  .patient-service-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .patient-dashboard-lower {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 760px) {
+
+  .patient-dashboard {
+    padding-bottom: 30px;
+  }
+
+  .patient-dashboard-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .patient-date-card {
+    width: 100%;
+  }
+
+  .patient-ai-card {
+    padding: 22px 18px 18px;
+  }
+
+  .patient-ai-options {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .patient-ai-field {
+    width: 100%;
+  }
+
+  .patient-ai-submit {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .patient-service-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .patient-health-note {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .patient-health-note-action {
+    width: 100%;
+    margin-left: 60px;
+  }
+
+}
+
+@media (max-width: 500px) {
+
+  .patient-welcome h1 {
+    font-size: 30px;
+  }
+
+ .patient-service-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.patient-service-card {
+  min-height: 108px;
+  padding: 12px;
+  border-radius: 14px;
+}
+
+.patient-service-icon {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.patient-service-copy b {
+  font-size: 11px;
+}
+
+.patient-service-copy small {
+  margin-top: 4px;
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+.patient-service-arrow {
+  right: 11px;
+  top: 11px;
+  font-size: 13px;
+}
+
+  .patient-service-icon {
+    margin-bottom: 14px;
+  }
+
+  .patient-section-heading {
+    align-items: center;
+  }
+
+  .patient-section-heading h2 {
+    font-size: 18px;
+  }
+
+  .patient-appointment-panel,
+  .patient-activity-panel {
+    padding: 17px;
+  }
+
+}
+/* =========================================================
+   MEDINEX PATIENT HOME — STEP 02
+   IVIE INSPIRED / APPROVED UX DIRECTION
+   ========================================================= */
+
+.patient-home-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+
+.patient-welcome h1 {
+  margin: 7px 0 5px;
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.12;
+  letter-spacing: -1.4px;
+}
+
+.patient-welcome p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.patient-date-card {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 14px;
+
+  border: 1px solid var(--line);
+  border-radius: 14px;
+
+  background: #fff;
+}
+
+.patient-date-icon {
+  width: 32px;
+  height: 32px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 10px;
+
+  background: #e7f8f5;
+  color: var(--teal);
+}
+
+.patient-date-card small {
+  display: block;
+
+  color: var(--muted);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .7px;
+}
+
+.patient-date-card b {
+  display: block;
+  margin-top: 2px;
+
+  font-size: 10px;
+}
+
+
+/* SOS */
+
+.patient-sos-banner {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-bottom: 30px;
+  padding: 15px 18px;
+
+  border: 1px solid #f4caca;
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #fff2f2,
+      #fffafa
+    );
+
+  color: #8f3030;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease;
+}
+
+.patient-sos-banner:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 12px 28px rgba(155, 55, 55, .08);
+}
+
+.patient-sos-icon {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  flex: 0 0 auto;
+
+  border-radius: 12px;
+
+  background: #ffe0e0;
+
+  color: #d84242;
+
+  font-size: 19px;
+}
+
+.patient-sos-copy {
+  flex: 1;
+}
+
+.patient-sos-copy b {
+  display: block;
+
+  font-size: 11px;
+  letter-spacing: .2px;
+}
+
+.patient-sos-copy small {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #a66d6d;
+
+  font-size: 9px;
+}
+
+.patient-sos-arrow {
+  font-size: 18px;
+}
+
+
+/* DOCTORS */
+
+.patient-doctor-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-bottom: 30px;
+}
+
+.patient-doctor-card {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-width: 0;
+
+  padding: 15px;
+
+  border: 1px solid var(--line);
+  border-radius: 16px;
+
+  background: #fff;
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease;
+}
+
+.patient-doctor-card:hover {
+  transform: translateY(-2px);
+
+  border-color: #8bd3cc;
+
+  box-shadow:
+    0 12px 30px rgba(8, 127, 120, .08);
+}
+
+.patient-doctor-avatar {
+  width: 48px;
+  height: 48px;
+
+  display: grid;
+  place-items: center;
+
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #e1f7f4,
+      #c9efeb
+    );
+
+  color: var(--teal);
+
+  font-size: 11px;
+  font-weight: 800;
+}
+.patient-doctor-avatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.patient-doctor-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.patient-doctor-info b {
+  display: block;
+
+  overflow: hidden;
+
+  color: var(--ink);
+
+  font-size: 10px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.patient-doctor-info small {
+  display: block;
+
+  margin-top: 3px;
+
+  color: var(--muted);
+
+  font-size: 9px;
+}
+
+.patient-doctor-rating {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #e7a321;
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.patient-doctor-rating em {
+  color: var(--muted);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.patient-doctor-action {
+  position: absolute;
+
+  right: 12px;
+  bottom: 12px;
+
+  padding: 5px 9px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: #e7f8f5;
+
+  color: var(--teal);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* AI ENGINE */
+
+.patient-ai-engine {
+  margin-top: 28px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+  .patient-doctor-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .patient-home-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .patient-date-card {
+    width: 100%;
+  }
+
+  .patient-doctor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-doctor-card {
+    min-height: 90px;
+  }
+
+  .patient-sos-banner {
+    padding: 13px;
+  }
+
+  .patient-sos-copy small {
+    line-height: 1.5;
+  }
+
+}
+/* =========================================================
+   MEDINEX TECH — NEW BRAND / LANDING / AUTH VISUAL V1
+   ========================================================= */
+
+.public-nav {
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  position: relative;
+  z-index: 20;
+}
+
+.public-brand {
+  flex: 0 0 auto;
+}
+
+.public-logo {
+  display: block;
+  width: 116px;
+  height: 54px;
+  object-fit: contain;
+}
+
+.public-nav nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  margin-left: auto;
+}
+
+.public-nav nav a {
+  color: #174b55;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color .18s ease;
+}
+
+.public-nav nav a:hover {
+  color: #0b9288;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-left: 10px;
+}
+
+.nav-actions .btn {
+  white-space: nowrap;
+}
+
+/* Homepage hero image */
+
+.hero-art {
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  border-radius: 30px;
+  background: #eaf8f6;
+  box-shadow: 0 18px 45px rgba(13, 92, 96, .10);
+}
+
+.hero-main-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* New logo mark */
+
+.brand-mark-image {
+  overflow: hidden;
+  background: #fff;
+  box-shadow: none;
+}
+
+.brand-mark-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* =========================================================
+   MEDINEX TECH — PUBLIC HOMEPAGE / PHƯƠNG ÁN 2
+   PATCH 01
+   Chỉ override giao diện public.
+   Không thay đổi logic JS.
+   ========================================================= */
+
+/* =========================================================
+   PUBLIC NAV — MEDINEX TECH
+   ========================================================= */
+
+.public-nav {
+  position: relative;
+  z-index: 20;
+
+  min-height: 82px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 24px;
+}
+
+/* LOGO */
+
+.public-brand {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+}
+
+.public-logo-mark {
+  width: 44px;
+  height: 44px;
+
+  flex: 0 0 44px;
+
+  overflow: hidden;
+  border-radius: 12px;
+
+  background: transparent !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.public-logo-mark img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+.public-logo-mark img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  display: block;
+}
+
+
+/* MENU GIỮA */
+
+.public-menu {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 34px;
+
+  margin-left: 0;
+}
+
+.public-menu a {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 40px;
+  padding: 0 15px;
+
+  border: 1px solid #cceae7;
+  border-radius: 12px;
+
+  background: #0f9189;
+  color: #ffffff !important;s
+  border-color:#0f9189;
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  box-shadow: 0 5px 14px rgba(8, 127, 120, .06);
+
+  transition : 
+    background .2s ease,
+    color .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.public-menu a:hover {
+  background: #087f78;
+color: #ffffff;
+border-color: #087f78;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 8px 18px rgba(8, 127, 120, .12);
+}
+
+
+/* CỤM BÊN PHẢI */
+
+.public-actions {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+}
+
+
+/* TẢI ỨNG DỤNG */
+
+.public-actions .download-app {
+  min-height: 40px;
+
+  padding: 0 15px;
+
+  border: 1px solid #0f9189;
+  border-radius: 12px;
+
+  background: #0f9189;
+  color: #ffffff;
+  
+
+  font-size: 12px;
+  font-weight: 800;
+
+  text-decoration: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    background .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.public-actions .download-app:hover {
+  background: #dff5f2;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 8px 20px rgba(8, 127, 120, .12);
+}
+
+
+/* ĐĂNG NHẬP */
+
+.public-actions .login-btn {
+  min-height: 40px;
+
+  padding: 0 17px;
+
+  border: 1px solid #087f78;
+  border-radius: 12px;
+
+  background: #087f78;
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  text-decoration: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 8px 18px rgba(8, 127, 120, .16);
+
+  transition:
+    background .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.public-actions .login-btn:hover {
+  background: #076f69;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 11px 24px rgba(8, 127, 120, .22);
+}
+#installAppBtn {
+  min-height: 40px;
+
+  padding: 0 15px;
+
+  border: 1px solid #0f9189;
+  border-radius: 12px;
+
+  background: #0f9189;
+  color: #ffffff !important;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  box-shadow: 0 5px 14px rgba(8, 127, 120, .10);
+
+  transition:
+    background .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+#installAppBtn:hover {
+  background: #087f78;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 9px 20px rgba(8, 127, 120, .18);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.medinex-home-hero {
+  position: relative;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  padding-top: 42px;
+  padding-bottom: 72px;
+  overflow: hidden;
+}
+
+.medinex-home-copy {
+  position: relative;
+  z-index: 3;
+  width: 52%;
+  padding-left: 8px;
+}
+
+.medinex-home-copy h1 {
+  max-width: 620px;
+  margin: 14px 0 20px;
+  color: #123f49;
+  font-size: clamp(42px, 5vw, 68px);
+  line-height: 1.04;
+  letter-spacing: -2.8px;
+}
+
+.medinex-home-copy h1 span {
+  display: block;
+  color: #0f9189;
+}
+
+.medinex-home-copy > p {
+  max-width: 530px;
+  margin: 0;
+  color: #68828a;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.medinex-home-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.medinex-home-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 20px;
+  margin-top: 26px;
+}
+
+.medinex-home-trust span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #708990;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.medinex-home-trust b {
+  width: 19px;
+  height: 19px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e0f5f2;
+  color: #0d9088;
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   HERO VISUAL — FULL BLEED
+   ========================================================= */
+
+.medinex-home-visual {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  min-height: 0;
+  width: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.medinex-home-glow {
+  position: absolute;
+  width: 470px;
+  height: 470px;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #dff5f2;
+  filter: blur(18px);
+  opacity: .45;
+}
+
+.medinex-home-image-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: auto !important;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.medinex-home-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: 100% !important;
+  height: auto !important;
+
+  max-width: none;
+  display: block;
+
+  object-fit: contain;
+  object-position: top right;
+
+  border-radius: 0;
+}
+
+/* =========================================================
+   FLOATING CARDS
+   ========================================================= */
+
+.medinex-floating-card {
+  position: absolute;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 15px;
+
+  border: 1px solid #d9eeec;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, .94);
+
+  box-shadow:
+    0 18px 40px rgba(8, 90, 88, .12);
+
+  backdrop-filter: blur(14px);
+}
+
+.medinex-floating-card > span:last-child {
+  display: block;
+}
+
+.medinex-floating-card b {
+  display: block;
+  color: #174b55;
+  font-size: 10px;
+}
+
+.medinex-floating-card small {
+  display: block;
+  margin-top: 3px;
+  color: #789198;
+  font-size: 8px;
+}
+
+.medinex-floating-icon {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  border-radius: 11px;
+  background: #e3f6f3;
+  color: #0d9088;
+
+  font-size: 16px;
+}
+
+.medinex-floating-top {
+  top: 34px;
+  left: -18px;
+}
+
+.medinex-floating-bottom {
+  right: -18px;
+  bottom: 28px;
+}
+
+
+/* =========================================================
+   PUBLIC SECTIONS — đồng bộ với hero
+   ========================================================= */
+
+.public-section {
+  padding-top: 35px;
+  padding-bottom: 80px;
+}
+
+.public-section .section-heading {
+  max-width: 680px;
+  margin-bottom: 30px;
+}
+
+.public-cards article {
+  border-radius: 22px;
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    border-color .2s ease;
+}
+
+.public-cards article:hover {
+  transform: translateY(-4px);
+  border-color: #b9e1dd;
+  box-shadow: 0 18px 42px rgba(7, 92, 91, .10);
+}
+
+
+/* =========================================================
+   LOGIN — GIỮ NGUYÊN HTML + JS
+   Chỉ biến authLayer thành màn hình đăng nhập toàn trang.
+   ========================================================= */
+
+.auth-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: grid;
+  place-items: center;
+
+  padding: 28px;
+
+  background:
+    rgba(239, 250, 249, .96);
+
+  backdrop-filter: blur(14px);
+}
+
+.auth-layer.hidden {
+  display: none;
+}
+
+.auth-backdrop {
+  position: absolute;
+  inset: 0;
+}
+
+.auth-card {
+  position: relative;
+  z-index: 2;
+
+  width: min(1120px, 100%);
+  min-height: min(680px, calc(100vh - 40px));
+  max-height: calc(100vh - 40px);
+
+  display: grid;
+  grid-template-columns: 1.03fr .97fr;
+
+  overflow: hidden;
+
+  border: 1px solid #dcefed;
+  border-radius: 32px;
+
+  background: #fff;
+
+  box-shadow:
+    0 30px 90px rgba(7, 83, 84, .18);
+}
+
+
+/* LEFT IMAGE */
+
+.auth-visual {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #dff7f5 0%,
+      #eefaf9 55%,
+      #d9f2ef 100%
+    );
+}
+
+.auth-visual-image {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.auth-main-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  object-fit: cover;
+  object-position: center ;
+  
+  border-radius: 0;
+}
+
+.auth-visual-copy {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 3;
+
+  max-width: none;
+  padding: 90px 36px 34px;
+
+  border: 0;
+  border-radius: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, .96) 0%,
+    rgba(255, 255, 255, .78) 38%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  backdrop-filter: none;
+
+  box-shadow: none;
+
+  display: none;
+}
+
+.auth-visual-copy h2 {
+  margin: 9px 0 10px;
+
+  color: #124650;
+
+  font-size: 29px;
+  line-height: 1.18;
+  letter-spacing: -1px;
+}
+
+.auth-visual-copy p {
+  margin: 0;
+
+  color: #617b83;
+
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+
+/* RIGHT LOGIN */
+
+.auth-content {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 34px 48px;
+  overflow-y: auto;
+}
+
+.auth-brand {
+margin-bottom: 28px;
+}
+
+.auth-brand .brand-mark-image,
+.side-brand .brand-mark-image {
+  overflow: hidden;
+}
+
+.auth-brand .brand-mark-image img,
+.side-brand .brand-mark-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.auth-intro {
+  margin-bottom: 18px;
+}
+
+.auth-intro h2 {
+  margin: 8px 0 8px;
+  color: #153f48;
+  font-size: 30px;
+  letter-spacing: -1px;
+}
+
+.auth-intro p {
+  margin: 0;
+  color: #718990;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   ROLE CARDS
+   ========================================================= */
+
+.role-choices {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.role-choice {
+  position: relative;
+
+  width: 100%;
+  min-height: 88px;
+
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) 22px;
+  grid-template-rows: auto auto;
+  column-gap: 13px;
+
+  padding: 14px 15px;
+
+  text-align: left;
+
+  border: 1px solid #deeeec;
+  border-radius: 17px;
+
+  background: #fff;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 14px rgba(10, 90, 90, .025);
+
+  transition:
+    border-color .2s ease,
+    background .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.role-choice:hover {
+  transform: translateY(-2px);
+
+  border-color: #9ddbd6;
+
+  background: #fbfefe;
+
+  box-shadow:
+    0 12px 28px rgba(10, 111, 105, .09);
+}
+
+.role-choice > span {
+  grid-column: 1;
+  grid-row: 1 / 3;
+
+  width: 46px;
+  height: 46px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 14px;
+
+  background: #e4f7f4;
+  color: #0f9189;
+
+  font-size: 20px;
+}
+
+.role-choice b {
+  grid-column: 2;
+  grid-row: 1;
+
+  align-self: end;
+
+  color: #184a53;
+
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.role-choice small {
+  grid-column: 2;
+  grid-row: 2;
+
+  margin-top: 4px;
+
+  color: #7a9097;
+
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.role-choice i {
+  grid-column: 3;
+  grid-row: 1 / 3;
+
+  align-self: center;
+  justify-self: end;
+
+  width: 25px;
+  height: 25px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: #eef9f7;
+  color: #0f9189;
+
+  font-size: 15px;
+  font-style: normal;
+
+  transition:
+    background .2s ease,
+    transform .2s ease;
+}
+
+.role-choice:hover i {
+  background: #d9f3ef;
+  transform: translateX(2px);
+}
+.role-choice.is-selected,
+.role-choice.selected {
+  border-color: #0f9189;
+  background: #f1fbf9;
+
+  box-shadow:
+    0 10px 28px rgba(15, 145, 137, .12);
+}
+
+.role-choice.is-selected > span,
+.role-choice.selected > span {
+  background: #0f9189;
+  color: #fff;
+}
+
+.role-choice.is-selected i,
+.role-choice.selected i {
+  background: #0f9189;
+  color: #fff;
+}
+
+/* AUTH FORM */
+
+.auth-form {
+  display: grid;
+  gap: 9px;
+}
+
+.auth-form label {
+  margin-top: 5px;
+  color: #42616a;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.auth-form input {
+  width: 100%;
+  min-height: 45px;
+
+  border: 1px solid #dbeae8;
+  border-radius: 12px;
+
+  background: #fbfdfd;
+
+  color: #193f48;
+}
+
+.auth-form input:focus {
+  border-color: #74c9c1;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(15, 145, 137, .08);
+}
+
+.auth-form .form-hint {
+  margin: 5px 0 8px;
+
+  color: #80939a;
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+.auth-switch {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 5px;
+
+  color: #788d94;
+  font-size: 10px;
+}
+
+.auth-switch button {
+  border: 0;
+  background: transparent;
+
+  color: #0d8d85;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.back-role {
+  margin: 5px auto 0;
+
+  border: 0;
+  background: transparent;
+
+  color: #789097;
+  font-size: 10px;
+
+  cursor: pointer;
+}
+
+
+/* CLOSE */
+
+.auth-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 10;
+
+  background: rgba(255,255,255,.88);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .public-menu {
+    display: none;
+  }
+
+  .medinex-home-hero {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-top: 25px;
+  }
+
+  .medinex-home-copy {
+    padding-left: 0;
+  }
+
+  .medinex-home-visual {
+    min-height: 380px;
+  }
+
+  .medinex-home-image-wrap {
+    height: 380px;
+  }
+
+  .medinex-floating-top {
+    left: 12px;
+    top: 20px;
+  }
+
+  .medinex-floating-bottom {
+    right: 12px;
+    bottom: 20px;
+  }
+
+  .auth-layer {
+    padding: 0;
+  }
+
+  .auth-card {
+    width: 100%;
+    min-height: 100dvh;
+    height: 100dvh;
+
+    grid-template-columns: 1fr;
+
+    border: 0;
+    border-radius: 0;
+  }
+
+  .auth-visual {
+    display: none;
+  }
+
+  .auth-content {
+    padding: 36px 24px;
+  }
+
+  .auth-brand {
+    margin-bottom: 38px;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .public-nav {
+    min-height: 68px;
+  }
+
+  .public-nav .brand small {
+    display: none;
+  }
+
+  .public-nav .brand b {
+    font-size: 11px;
+  }
+
+  .public-nav .btn {
+    min-height: 36px;
+    padding: 8px 11px;
+    font-size: 10px;
+  }
+
+  .medinex-home-copy h1 {
+    font-size: 41px;
+    letter-spacing: -1.8px;
+  }
+
+  .medinex-home-copy > p {
+    font-size: 13px;
+  }
+
+  .medinex-home-actions {
+    width: 100%;
+  }
+
+  .medinex-home-actions .btn {
+    flex: 1;
+  }
+
+  .medinex-home-trust {
+    display: grid;
+    gap: 9px;
+  }
+
+  .medinex-home-visual {
+    min-height: 310px;
+  }
+
+  .medinex-home-image-wrap {
+    height: 310px;
+    border-radius: 25px;
+  }
+
+  .medinex-floating-card {
+    padding: 9px 10px;
+  }
+
+  .medinex-floating-icon {
+    width: 29px;
+    height: 29px;
+    font-size: 13px;
+  }
+
+  .medinex-floating-card b {
+    font-size: 8px;
+  }
+
+  .medinex-floating-card small {
+    font-size: 7px;
+  }
+
+  .auth-content {
+    padding: 28px 20px;
+  }
+
+  .auth-intro h2 {
+    font-size: 27px;
+  }
+
+}
+/* =========================================================
+   MEDINEX AUTH — ROLE CHOICE FIX
+   ========================================================= */
+
+.role-choices {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.role-choice {
+  position: relative;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 24px;
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 3px;
+
+  width: 100%;
+  min-height: 78px;
+  padding: 14px 16px;
+
+  border: 1px solid #dbe9e7;
+  border-radius: 16px;
+  background: #ffffff;
+
+  text-align: left;
+  cursor: pointer;
+
+  box-sizing: border-box;
+}
+
+.role-choice > span {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 12px;
+  background: #ecfdf9;
+
+  font-size: 21px;
+  line-height: 1;
+}
+
+.role-choice > b {
+  grid-column: 2;
+  grid-row: 1;
+
+  display: block;
+
+  min-width: 0;
+
+  color: #123f43;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.role-choice > small {
+  grid-column: 2;
+  grid-row: 2;
+
+  display: block;
+
+  min-width: 0;
+
+  color: #6b7f81;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.role-choice > i {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #0f766e;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.role-choice:hover {
+  border-color: #8acfc5;
+  background: #f8fffe;
+  transform: translateY(-1px);
+}
+
+.role-choice:active {
+  transform: translateY(0);
+}
+
+
+/* Mobile */
+@media (max-width: 640px) {
+
+  .role-choices {
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .role-choice {
+    grid-template-columns: 38px minmax(0, 1fr) 20px;
+    min-height: 72px;
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .role-choice > span {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    font-size: 18px;
+  }
+
+  .role-choice > b {
+    font-size: 14px;
+  }
+
+  .role-choice > small {
+    font-size: 11px;
+  }
+
+  .role-choice > i {
+    font-size: 18px;
+  }
+
+}
+.medinex-home-hero {
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+@media (max-width: 900px) {
+  .auth-card {
+    width: min(620px, calc(100vw - 28px));
+    min-height: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .auth-visual {
+    min-height: 280px;
+  }
+
+  .auth-visual-copy {
+    display: none;
+  }
+
+  .auth-content {
+    padding: 34px 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .auth-layer {
+    padding: 9px;
+  }
+
+  .auth-card {
+    width: calc(100vw - 18px);
+    max-height: calc(100vh - 18px);
+    border-radius: 22px;
+  }
+
+  .auth-visual {
+    min-height: 210px;
+  }
+
+  .auth-content {
+    padding: 26px 18px;
+  }
+
+  .role-choice {
+    min-height: 82px;
+    padding: 13px;
+  }
+}
+/* =========================================================
+   MEDINEX APP — NEW USER NAVIGATION
+   Public homepage và App là 2 không gian riêng.
+   ========================================================= */
+
+#publicNav {
+  transition: none;
+}
+
+/* Khi đã vào App: public header biến mất hoàn toàn */
+body.app-mode #publicNav {
+  display: none !important;
+}
+
+/* =========================================================
+   APP BOTTOM NAV
+   ========================================================= */
+
+.app-bottom-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+
+  z-index: 900;
+
+  width: min(720px, calc(100vw - 28px));
+  min-height: 68px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: stretch;
+
+  padding: 7px;
+
+  border: 1px solid rgba(15, 145, 137, .12);
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, .94);
+  backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 14px 40px rgba(7, 83, 84, .14);
+}
+
+.app-bottom-item {
+  position: relative;
+
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+
+  border: 0;
+  border-radius: 17px;
+
+  background: transparent;
+  color: #789098;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    transform .2s ease;
+}
+
+.app-bottom-item:hover {
+  color: #0f9189;
+}
+
+.app-bottom-item.active {
+  color: #0f9189;
+  background: #e9f8f6;
+}
+
+.app-bottom-icon {
+  width: 27px;
+  height: 27px;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 20px;
+  line-height: 1;
+}
+
+.notification-badge {
+  position: absolute;
+
+  top: 5px;
+  right: calc(50% - 22px);
+
+  min-width: 17px;
+  height: 17px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0 4px;
+
+  border-radius: 999px;
+
+  background: #e54848;
+  color: #fff;
+
+  font-size: 9px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   APP MODE — KHÔNG CÒN SIDEBAR TRÁI
+   ========================================================= */
+
+body.app-mode #sidebar {
+  display: none !important;
+}
+
+body.app-mode #app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Nội dung App không bị bottom nav che */
+body.app-mode .app-main {
+  padding-bottom: 110px;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+  .app-bottom-nav {
+    bottom: 10px;
+    width: calc(100vw - 20px);
+    min-height: 64px;
+    border-radius: 20px;
+  }
+
+  .app-bottom-item {
+    font-size: 10px;
+  }
+
+  .app-bottom-icon {
+    font-size: 19px;
+  }
+
+  body.app-mode .app-main {
+    padding-bottom: 92px;
+  }
+}
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 761px) {
+
+  .app-bottom-nav {
+    bottom: 20px;
+  }
+}
+/* =========================================================
+   MEDINEX APP — TÁCH KHỎI PUBLIC HOMEPAGE
+   ========================================================= */
+
+body.app-mode .public-nav {
+  display: none !important;
+}
+body.app-mode .app-topbar {
+  display: none !important;
+}
+
+/* Footer public */
+body.app-mode footer {
+  display: none !important;
+}
+
+/* Sidebar cũ — tạm ẩn khi vào App */
+body.app-mode #sidebar {
+  display: none !important;
+}
+
+/* App chiếm toàn bộ chiều ngang */
+body.app-mode #app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Không để nội dung App bị dính vào thanh điều hướng */
+body.app-mode .app-main {
+  padding-bottom: 110px;
+}
+
+/* =========================================================
+   APP — FULL WIDTH + DỊCH VỤ / THÔNG BÁO
+   ========================================================= */
+
+body.app-mode .app-main {
+  margin-left: 0 !important;
+}
+
+.app-service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.app-service-card {
+  appearance: none;
+  width: 100%;
+  min-height: 150px;
+  padding: 20px;
+  border: 1px solid #dceceb;
+  border-radius: 18px;
+  background: #fff;
+  color: #193b42;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 8px 24px rgba(7, 83, 84, .05);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.app-service-card:hover {
+  transform: translateY(-2px);
+  border-color: #9edbd3;
+  box-shadow: 0 12px 30px rgba(7, 83, 84, .09);
+}
+
+.app-service-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: #e9f8f6;
+  color: #0f9189;
+  font-size: 21px;
+  margin-bottom: 3px;
+}
+
+.app-service-card b {
+  font-size: 15px;
+}
+
+.app-service-card small {
+  color: #71868c;
+  line-height: 1.55;
+  font-size: 11px;
+}
+
+.app-service-card em {
+  margin-top: auto;
+  color: #0f9189;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.app-service-card-sos .app-service-icon {
+  background: #fff0f0;
+  color: #d94a4a;
+}
+
+.notification-empty-state {
+  margin-top: 20px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+}
+
+.notification-empty-icon {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: #e9f8f6;
+  color: #0f9189;
+  font-size: 25px;
+  margin-bottom: 14px;
+}
+
+.notification-empty-state h3 {
+  margin: 0 0 7px;
+}
+
+.notification-empty-state p {
+  max-width: 430px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 11px;
+}
+
+@media (max-width: 700px) {
+  .app-service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .app-service-card {
+    min-height: 132px;
+  }
+}
+/* AI COMPACT - MOBILE */
+
+@media (max-width: 650px) {
+
+  .patient-ai-card {
+    margin-bottom: 18px;
+    padding: 14px;
+    border-radius: 15px;
+  }
+
+  .patient-ai-content {
+    gap: 10px;
+  }
+
+  .patient-ai-mark {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+
+    border-radius: 10px;
+    font-size: 16px;
+  }
+
+  .patient-ai-content h2 {
+    margin: 2px 0 3px;
+    font-size: 16px;
+    letter-spacing: -.3px;
+  }
+
+  .patient-ai-content p {
+    font-size: 8px;
+    line-height: 1.45;
+  }
+
+  .patient-ai-form {
+    margin-top: 12px;
+  }
+
+  .patient-ai-input {
+    gap: 8px;
+    padding: 9px 11px;
+    border-radius: 11px;
+  }
+
+  .patient-ai-input > span {
+    font-size: 13px;
+  }
+
+  .patient-ai-input textarea {
+    min-height: 48px;
+    font-size: 10px;
+    line-height: 1.45;
+  }
+
+  .patient-ai-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+
+    margin-top: 8px;
+  }
+
+  .patient-ai-field {
+    width: auto;
+  }
+
+  .patient-ai-field label {
+    margin-bottom: 3px;
+    font-size: 8px;
+  }
+
+  .patient-ai-field input,
+  .patient-ai-field select {
+    min-height: 36px;
+    padding: 0 9px;
+    border-radius: 9px;
+    font-size: 10px;
+  }
+
+  .patient-ai-submit {
+    grid-column: 1 / -1;
+
+    width: 100%;
+    min-height: 36px;
+
+    margin-left: 0;
+    padding: 0 14px;
+
+    border-radius: 9px;
+    font-size: 10px;
+  }
+
+  .patient-ai-disclaimer {
+    margin-top: 8px;
+    font-size: 7px;
+    line-height: 1.45;
+  }
+
+  .patient-ai-result {
+    margin-top: 10px;
+  }
+}
+/* MOBILE SPACING - PATIENT HOME */
+
+@media (max-width: 650px) {
+
+  .patient-service-grid {
+    margin-bottom: 18px;
+  }
+
+  .patient-section-heading {
+    margin-bottom: 9px;
+  }
+
+  .patient-section-heading h2 {
+    font-size: 17px;
+  }
+
+  .patient-doctor-grid {
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+}
+/* APPOINTMENT + ACTIVITY — MOBILE COMPACT */
+
+@media (max-width: 650px) {
+
+  .patient-dashboard-lower {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .patient-appointment-panel,
+  .patient-activity-panel {
+    min-height: auto;
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .patient-panel-heading {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .patient-panel-heading h3 {
+    margin: 3px 0 0;
+    font-size: 15px;
+  }
+}
+/* =========================================================
+   DOCTOR CONSULTATION
+   ========================================================= */
+
+.doctor-consult-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 18px;
+}
+
+.doctor-consult-search {
+  flex: 1;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.doctor-consult-search span {
+  color: var(--teal);
+  font-size: 17px;
+}
+
+.doctor-consult-search input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 12px;
+}
+
+.doctor-consult-search input::placeholder {
+  color: #9aabb1;
+}
+
+#doctorSpecialtyFilter {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 11px;
+  outline: 0;
+}
+
+.doctor-consult-list {
+  display: grid;
+  gap: 10px;
+}
+
+.doctor-consult-card {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  min-height: 92px;
+  padding: 13px 14px;
+
+  border: 1px solid #e1eeee;
+  border-radius: 16px;
+
+  background: #fff;
+
+  box-shadow:
+    0 7px 22px rgba(8, 127, 120, .055);
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease;
+}
+
+.doctor-consult-card:hover {
+  transform: translateY(-1px);
+  border-color: #c8e7e4;
+  box-shadow:
+    0 12px 28px rgba(8, 127, 120, .09);
+}
+
+.doctor-consult-avatar {
+  width: 50px;
+  height: 50px;
+  flex: 0 0 50px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 14px;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #e5f8f5,
+      #cdeeea
+    );
+
+  color: var(--teal);
+
+  font-size: 12px;
+  font-weight: 800;
+}
+.doctor-consult-avatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+}
+
+
+.doctor-consult-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.doctor-consult-name {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.doctor-consult-name b {
+  color: var(--deep);
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.doctor-consult-name small,
+.doctor-consult-info > small {
+  color: var(--muted);
+}
+
+.doctor-consult-info > small {
+  display: block;
+  margin-top: 3px;
+  font-size: 10px;
+}
+
+.doctor-online {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 3px 7px;
+
+  border-radius: 999px;
+
+  background: #e9f8f1;
+  color: #25835e;
+
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.doctor-consult-meta {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 5px;
+
+  color: #82979e;
+  font-size: 9px;
+}
+
+.doctor-consult-meta span:first-child {
+  color: #d79a27;
+  font-weight: 700;
+}
+
+.doctor-consult-contact {
+  flex: 0 0 auto;
+
+  min-height: 34px;
+  padding: 0 13px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: var(--teal);
+  color: #fff;
+
+  font: inherit;
+  font-size: 10px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease;
+}
+
+.doctor-consult-contact:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 7px 16px rgba(8, 127, 120, .18);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  .doctor-consult-toolbar {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 7px;
+    margin: 12px 0 13px;
+  }
+
+  .doctor-consult-search {
+    min-height: 38px;
+    padding: 0 11px;
+    border-radius: 10px;
+  }
+
+  .doctor-consult-search span {
+    font-size: 14px;
+  }
+
+  .doctor-consult-search input {
+    font-size: 10px;
+  }
+
+  #doctorSpecialtyFilter {
+    width: 100%;
+    min-height: 36px;
+    border-radius: 9px;
+    font-size: 10px;
+  }
+
+  .doctor-consult-list {
+    gap: 8px;
+  }
+
+  .doctor-consult-card {
+    min-height: 70px;
+    padding: 9px 10px;
+    gap: 9px;
+    border-radius: 13px;
+  }
+
+  .doctor-consult-avatar {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    border-radius: 11px;
+    font-size: 9px;
+  }
+
+  .doctor-consult-name {
+    gap: 5px;
+  }
+
+  .doctor-consult-name b {
+    font-size: 10px;
+  }
+
+  .doctor-online {
+    padding: 2px 5px;
+    font-size: 7px;
+  }
+
+  .doctor-consult-info > small {
+    margin-top: 2px;
+    font-size: 8px;
+  }
+
+  .doctor-consult-meta {
+    gap: 6px;
+    margin-top: 3px;
+    font-size: 7px;
+  }
+
+  .doctor-consult-contact {
+    min-height: 30px;
+    padding: 0 9px;
+    border-radius: 8px;
+    font-size: 8px;
+  }
+}
+/* =========================================================
+   DOCTOR CONTACT PANEL
+   ========================================================= */
+
+.doctor-contact-panel {
+  margin-top: 18px;
+  padding: 20px;
+
+  border: 1px solid #dcefed;
+  border-radius: 18px;
+
+  background: #fff;
+
+  box-shadow:
+    0 14px 34px rgba(8, 127, 120, .08);
+}
+
+.doctor-contact-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 16px;
+}
+
+.doctor-contact-header h2 {
+  margin: 4px 0 0;
+  color: var(--deep);
+  font-size: 18px;
+}
+
+.doctor-contact-close {
+  width: 32px;
+  height: 32px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid var(--line);
+  border-radius: 9px;
+
+  background: #fff;
+  color: var(--muted);
+
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.doctor-contact-profile {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  padding: 13px;
+
+  border-radius: 14px;
+  background: #f5fbfa;
+}
+
+.doctor-contact-avatar {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 14px;
+  overflow: hidden;
+
+  background: #d9f3ef;
+
+  color: var(--teal);
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.doctor-contact-avatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: inherit;
+}
+
+.doctor-contact-info {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.doctor-contact-info b {
+  color: var(--deep);
+  font-size: 13px;
+}
+
+.doctor-contact-info > span:not(.doctor-contact-status) {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.doctor-contact-info small {
+  color: #d79a27;
+  font-size: 9px;
+}
+
+.doctor-contact-status {
+  color: #2b8a63;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.doctor-contact-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+
+  margin-top: 12px;
+}
+
+.doctor-contact-action {
+  min-height: 58px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 10px 12px;
+
+  border: 1px solid #dcefed;
+  border-radius: 12px;
+
+  background: #fff;
+
+  color: var(--ink);
+
+  text-align: left;
+  cursor: pointer;
+}
+
+.doctor-contact-action > span:first-child {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 9px;
+
+  background: #e9f8f6;
+  color: var(--teal);
+
+  font-size: 14px;
+}
+
+.doctor-contact-action > span:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.doctor-contact-action b {
+  font-size: 10px;
+}
+
+.doctor-contact-action small {
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.doctor-contact-note {
+  margin: 10px 0 0;
+
+  color: #91a3a9;
+  font-size: 8px;
+  line-height: 1.5;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+  .doctor-contact-panel {
+    margin-top: 12px;
+    padding: 13px;
+    border-radius: 14px;
+  }
+
+  .doctor-contact-header {
+    margin-bottom: 11px;
+  }
+
+  .doctor-contact-header h2 {
+    font-size: 15px;
+  }
+
+  .doctor-contact-profile {
+    gap: 9px;
+    padding: 10px;
+    border-radius: 11px;
+  }
+
+  .doctor-contact-avatar {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+    border-radius: 11px;
+    font-size: 9px;
+  }
+
+  .doctor-contact-info b {
+    font-size: 10px;
+  }
+
+  .doctor-contact-info > span:not(.doctor-contact-status) {
+    font-size: 8px;
+  }
+
+  .doctor-contact-info small {
+    font-size: 7px;
+  }
+
+  .doctor-contact-actions {
+    gap: 7px;
+    margin-top: 8px;
+  }
+
+  .doctor-contact-action {
+    min-height: 48px;
+    padding: 8px;
+    border-radius: 10px;
+  }
+
+  .doctor-contact-action > span:first-child {
+    width: 27px;
+    height: 27px;
+    flex-basis: 27px;
+    border-radius: 8px;
+    font-size: 12px;
+  }
+
+  .doctor-contact-action b {
+    font-size: 9px;
+  }
+
+  .doctor-contact-action small {
+    font-size: 7px;
+  }
+
+  .doctor-contact-note {
+    margin-top: 7px;
+    font-size: 7px;
+  }
+}
+/* =========================================================
+   DOCTOR CHAT
+   ========================================================= */
+
+.doctor-chat-page {
+  min-height: calc(100vh - 150px);
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid #dcefed;
+  border-radius: 18px;
+
+  background: #fff;
+  overflow: hidden;
+
+  box-shadow:
+    0 12px 32px rgba(8, 127, 120, .06);
+}
+
+
+/* TOPBAR */
+
+.doctor-chat-topbar {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 13px 16px;
+
+  border-bottom: 1px solid #e7f0ef;
+  background: #fff;
+}
+
+.doctor-chat-back {
+  width: 34px;
+  height: 34px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid var(--line);
+  border-radius: 9px;
+
+  background: #fff;
+  color: var(--deep);
+
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.doctor-chat-doctor {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.doctor-chat-avatar {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 11px;
+
+  background: #dff5f1;
+  color: var(--teal);
+
+  font-size: 9px;
+  font-weight: 800;
+}
+.doctor-chat-avatar {
+  overflow: hidden;
+}
+
+.doctor-chat-avatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: inherit;
+}
+
+.doctor-chat-doctor > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.doctor-chat-doctor b {
+  color: var(--deep);
+  font-size: 12px;
+}
+
+.doctor-chat-doctor small {
+  color: #2b8a63;
+  font-size: 8px;
+}
+
+
+/* MESSAGES */
+
+.doctor-chat-messages {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  padding: 18px;
+
+  overflow-y: auto;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f8fcfb 0%,
+      #ffffff 100%
+    );
+}
+
+.doctor-chat-date {
+  align-self: center;
+
+  padding: 4px 9px;
+
+  border-radius: 999px;
+
+  background: #edf5f4;
+  color: #8ba0a5;
+
+  font-size: 7px;
+  font-weight: 700;
+}
+
+.doctor-chat-message {
+  display: flex;
+  max-width: 72%;
+}
+
+.doctor-chat-message-doctor {
+  align-self: flex-start;
+}
+.doctor-chat-message-patient {
+  justify-content: flex-end;
+}
+
+.doctor-chat-message-patient .doctor-chat-bubble {
+  background: #0f9189;
+  color: #fff;
+  border-bottom-right-radius: 5px;
+}
+
+.doctor-chat-message-patient .doctor-chat-bubble p {
+  color: #fff;
+}
+
+.doctor-chat-message-patient .doctor-chat-bubble small {
+  color: rgba(255,255,255,.72);
+}
+.doctor-chat-bubble {
+  padding: 10px 12px;
+
+  border-radius: 13px 13px 13px 4px;
+
+  background: #e9f7f5;
+  color: var(--ink);
+}
+
+.doctor-chat-bubble b {
+  display: block;
+  margin-bottom: 3px;
+
+  color: var(--teal);
+  font-size: 9px;
+}
+
+.doctor-chat-bubble p {
+  margin: 0;
+
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.doctor-chat-bubble small {
+  display: block;
+  margin-top: 5px;
+
+  color: #91a5aa;
+  font-size: 7px;
+}
+
+
+/* INPUT */
+
+.doctor-chat-input-area {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 10px 12px;
+
+  border-top: 1px solid #e7f0ef;
+
+  background: #fff;
+}
+
+.doctor-chat-attach,
+.doctor-chat-send {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+
+  display: grid;
+  place-items: center;
+
+  border: 0;
+  border-radius: 9px;
+
+  cursor: pointer;
+}
+
+.doctor-chat-attach {
+  background: #eef7f6;
+  color: var(--teal);
+
+  font-size: 18px;
+}
+
+.doctor-chat-send {
+  background: var(--teal);
+  color: #fff;
+
+  font-size: 13px;
+}
+
+.doctor-chat-input-area input {
+  flex: 1;
+
+  min-width: 0;
+  height: 36px;
+
+  padding: 0 11px;
+
+  border: 1px solid var(--line);
+  border-radius: 10px;
+
+  outline: 0;
+
+  background: #f9fcfc;
+  color: var(--ink);
+
+  font: inherit;
+  font-size: 10px;
+}
+
+.doctor-chat-input-area input:focus {
+  border-color: #a8dcd7;
+  background: #fff;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+  .doctor-chat-page {
+    min-height: calc(100vh - 120px);
+
+    border-radius: 14px;
+  }
+
+  .doctor-chat-topbar {
+    padding: 9px 10px;
+  }
+
+  .doctor-chat-back {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+  }
+
+  .doctor-chat-avatar {
+    width: 35px;
+    height: 35px;
+    flex-basis: 35px;
+    border-radius: 9px;
+  }
+
+  .doctor-chat-doctor b {
+    font-size: 10px;
+  }
+
+  .doctor-chat-doctor small {
+    font-size: 7px;
+  }
+
+  .doctor-chat-messages {
+    gap: 8px;
+    padding: 11px;
+  }
+
+  .doctor-chat-message {
+    max-width: 84%;
+  }
+
+  .doctor-chat-bubble {
+    padding: 8px 10px;
+    border-radius: 11px 11px 11px 3px;
+  }
+
+  .doctor-chat-bubble b {
+    font-size: 8px;
+  }
+
+  .doctor-chat-bubble p {
+    font-size: 9px;
+  }
+
+  .doctor-chat-input-area {
+    padding: 7px;
+  }
+
+  .doctor-chat-attach,
+  .doctor-chat-send {
+    width: 31px;
+    height: 31px;
+    flex-basis: 31px;
+  }
+
+  .doctor-chat-input-area input {
+    height: 32px;
+    font-size: 9px;
+  }
+}
+.doctor-chat-quick-replies {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.doctor-chat-quick-replies::-webkit-scrollbar {
+  display: none;
+}
+
+.doctor-chat-quick-replies button {
+  flex: 0 0 auto;
+  border: 1px solid #d7ece9;
+  background: #f5fbfa;
+  color: #167c76;
+  border-radius: 999px;
+  padding: 7px 11px;
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.doctor-chat-quick-replies button:hover {
+  background: #e8f7f5;
+}
+.doctor-chat-typing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  margin: 8px 0;
+  padding: 9px 12px;
+  border-radius: 14px;
+  background: #f1f7f6;
+  color: #7a9290;
+}
+
+.doctor-chat-typing span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #79aaa6;
+}
+
+.doctor-chat-typing small {
+  margin-left: 5px;
+  font-size: 10px;
+}
+.doctor-chat-image-bubble {
+  padding: 6px;
+}
+
+.doctor-chat-image-preview {
+  display: block;
+  width: min(220px, 65vw);
+  max-height: 280px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.doctor-chat-image-bubble small {
+  display: block;
+  padding: 5px 5px 2px;
+}
+/* =========================
+   DOCTOR CALL OVERLAY
+========================= */
+
+.doctor-call-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(8, 38, 38, .58);
+  backdrop-filter: blur(14px);
+}
+
+.doctor-call-overlay[hidden] {
+  display: none;
+}
+
+.doctor-call-card {
+  width: min(420px, 100%);
+  padding: 34px 24px 24px;
+  text-align: center;
+  border-radius: 26px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .22);
+}
+
+.doctor-call-type {
+  margin-bottom: 22px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  color: #0f9189;
+}
+
+.doctor-call-avatar {
+  width: 86px;
+  height: 86px;
+  margin: 0 auto 16px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e9f8f6;
+  color: #0f766e;
+  font-size: 24px;
+  font-weight: 800;
+  box-shadow: 0 0 0 8px rgba(15, 145, 137, .08);
+}
+
+.doctor-call-card h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #173b3a;
+}
+
+.doctor-call-card p {
+  margin: 7px 0 26px;
+  color: #78908e;
+  font-size: 13px;
+}
+
+.doctor-call-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.doctor-call-control {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: #edf7f6;
+  color: #0f766e;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.doctor-call-control:active {
+  transform: scale(.94);
+}
+
+.doctor-call-control.doctor-call-end {
+  width: 56px;
+  height: 56px;
+  background: #e94b4b;
+  color: #fff;
+  transform: rotate(135deg);
+}
+
+.doctor-call-control.doctor-call-end:active {
+  transform: rotate(135deg) scale(.94);
+}
+
+@media (max-width: 650px) {
+  .doctor-call-card {
+    padding: 30px 20px 22px;
+    border-radius: 22px;
+  }
+
+  .doctor-call-avatar {
+    width: 78px;
+    height: 78px;
+  }
+}
+.doctor-call-avatar {
+  overflow: hidden;
+}
+
+.doctor-call-avatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: inherit;
 }

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'medinex-tech-v1';
+const CACHE_NAME = 'medinex-tech-v2';
 
 const APP_FILES = [
   './',
