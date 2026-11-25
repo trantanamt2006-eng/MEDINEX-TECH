@@ -559,8 +559,32 @@
       );
     }
   }
-  $('sidebarLogout').addEventListener('click',logout);$('userMenu').addEventListener('click',e=>{e.stopPropagation();const menu=$('accountDropdown');menu.hidden=!menu.hidden;$('userMenu').setAttribute('aria-expanded',String(!menu.hidden))});$('dropdownProfile').addEventListener('click',()=>{closeAccountMenu();goPage('profile')});$('dropdownLogout').addEventListener('click',logout);document.addEventListener('click',e=>{if(!$('accountMenuWrap').contains(e.target))closeAccountMenu()});$('notifications').addEventListener('click',()=>toast('Bạn chưa có thông báo mới trong bản demo.'));
-  
+  $('sidebarLogout').addEventListener('click',logout);
+$('userMenu').addEventListener('click',e=>{
+  e.stopPropagation();
+  const menu=$('accountDropdown');
+  menu.hidden=!menu.hidden;
+  $('userMenu').setAttribute(
+    'aria-expanded',
+    String(!menu.hidden)
+  );
+});
+$('dropdownProfile').addEventListener('click',()=>{
+  closeAccountMenu();
+  goPage('profile');
+});
+
+
+document.addEventListener('click',e=>{
+  if(!$('accountMenuWrap').contains(e.target)){
+    closeAccountMenu();
+  }
+});
+
+$('notifications').addEventListener(
+  'click',
+  ()=>toast('Bạn chưa có thông báo mới trong bản demo.')
+);
   function goPage(page, updateHistory = true) {
   const allowedPages = [
   'overview',

@@ -11,7 +11,242 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#073f4a"><title>MEDINEX TECH — Dịch vụ chăm sóc sức khỏe</title>
   <link rel="stylesheet" href="css/style.css">
-  </head>
+  <style id="medinex-mobile-final-fix">
+@media (max-width: 600px) {
+
+  #publicNav {
+    position: relative !important;
+    z-index: 20 !important;
+    width: 100% !important;
+    height: 60px !important;
+    min-height: 60px !important;
+    padding: 0 10px !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 5px !important;
+  }
+
+  #publicNav .public-brand {
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+  }
+
+  #publicNav .public-menu {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    gap: 4px !important;
+    margin: 0 !important;
+  }
+
+  #publicNav .public-menu a {
+    font-size: 8px !important;
+    padding: 7px 6px !important;
+    white-space: nowrap !important;
+  }
+
+  #publicNav .nav-actions {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    gap: 4px !important;
+    margin-left: auto !important;
+  }
+
+  #publicNav .nav-actions .btn {
+    min-height: 28px !important;
+    padding: 6px 7px !important;
+    font-size: 8px !important;
+    white-space: nowrap !important;
+  }
+
+
+  .medinex-home-hero {
+    position: relative !important;
+    width: 100% !important;
+    max-width: none !important;
+
+    height: calc(100dvh - 60px) !important;
+    min-height: calc(100dvh - 60px) !important;
+
+    margin: 0 !important;
+    padding: 30px 20px 0 !important;
+
+    display: block !important;
+    overflow: hidden !important;
+    border-radius: 0 !important;
+
+    background: #f4f9fa !important;
+  }
+
+
+  .medinex-home-copy {
+    position: relative !important;
+    z-index: 5 !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 58% !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .medinex-home-eyebrow {
+    position: relative !important;
+    z-index: 6 !important;
+
+    display: inline-flex !important;
+    max-width: 100% !important;
+
+    font-size: 8px !important;
+    line-height: 1.2 !important;
+    padding: 6px 9px !important;
+    white-space: nowrap !important;
+  }
+
+  .medinex-home-copy h1 {
+    position: relative !important;
+    z-index: 6 !important;
+
+    width: 100% !important;
+    max-width: 390px !important;
+
+    margin: 14px 0 !important;
+
+    font-size: 36px !important;
+    line-height: 1.08 !important;
+    letter-spacing: -1.4px !important;
+
+    color: #123f49 !important;
+  }
+
+  .medinex-home-copy h1 span {
+    display: block !important;
+    color: #0f9189 !important;
+  }
+
+  .medinex-home-copy > p {
+    position: relative !important;
+    z-index: 6 !important;
+
+    width: 100% !important;
+    max-width: 380px !important;
+
+    margin: 0 !important;
+
+    font-size: 12px !important;
+    line-height: 1.7 !important;
+
+    color: #547078 !important;
+  }
+
+  .medinex-home-actions {
+    position: relative !important;
+    z-index: 6 !important;
+    margin-top: 18px !important;
+  }
+
+  .medinex-home-actions .btn {
+    min-height: 38px !important;
+    padding: 9px 15px !important;
+    font-size: 11px !important;
+  }
+
+  .medinex-home-trust {
+    position: relative !important;
+    z-index: 6 !important;
+
+    margin-top: 15px !important;
+
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px 12px !important;
+  }
+
+  .medinex-home-trust > * {
+    font-size: 9px !important;
+  }
+
+
+  /* ẢNH CHỈ Ở PHẦN DƯỚI */
+  .medinex-home-visual {
+    position: absolute !important;
+
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+
+    width: 100% !important;
+    height: 42% !important;
+    min-height: 0 !important;
+
+    z-index: 1 !important;
+
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .medinex-home-glow {
+    display: none !important;
+  }
+
+  .medinex-home-image-wrap {
+    position: absolute !important;
+
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    overflow: hidden !important;
+    border-radius: 0 !important;
+  }
+
+  .medinex-home-image {
+    position: absolute !important;
+
+    left: 0 !important;
+    top: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    max-width: none !important;
+
+    object-fit: cover !important;
+    object-position: right center !important;
+
+    opacity: 1 !important;
+
+    border-radius: 0 !important;
+  }
+
+  .medinex-home-visual::after {
+    content: "" !important;
+
+    position: absolute !important;
+    inset: 0 !important;
+
+    z-index: 2 !important;
+
+    background:
+      linear-gradient(
+        to bottom,
+        #f4f9fa 0%,
+        rgba(244,249,250,.92) 8%,
+        rgba(244,249,250,.35) 25%,
+        rgba(244,249,250,0) 48%
+      ) !important;
+
+    pointer-events: none !important;
+  }
+}
+</style>
+</head>
   <body>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <!-- Public landing -->
@@ -60,10 +295,11 @@
 
     <div class="medinex-home-copy">
 
-     
-      </span>
+  <span class="eyebrow medinex-home-eyebrow">
+    MEDINEX TECH · KẾT NỐI CHĂM SÓC SỨC KHỎE
+  </span>
 
-      <h1>
+  <h1>
         Chăm sóc y tế tận tâm
         <span>An tâm trọn vẹn từ xa</span>
       </h1>
@@ -2052,7 +2288,18 @@ src="assets/medinex-logo-mark.jpg"
         </section>
       </section>
 
-      <section class="page" data-page-content="profile"><div class="page-heading"><div><span class="eyebrow">TÀI KHOẢN</span><h1>Hồ sơ cá nhân</h1><p>Thông tin tài khoản đang dùng trong bản demo.</p></div><span class="page-icon">♙</span></div><div class="profile-layout"><section class="panel profile-card"><div class="profile-avatar" id="profileAvatar">T</div><h2 id="profileName">Người dùng</h2><p id="profileRole" class="muted">Người bệnh / Người nhà</p><span class="verified-pill">TÀI KHOẢN DEMO</span></section><section class="panel profile-details"><div class="panel-heading"><div><h3>Thông tin tài khoản</h3><p>Cập nhật trong phiên demo</p></div></div><form id="profileForm" class="form-grid"><div class="field full"><label for="profileNameInput">Họ và tên</label><input id="profileNameInput" maxlength="100" required></div><div class="field full"><label for="profileEmailInput">Email</label><input id="profileEmailInput" type="email" readonly></div><div class="field full"><label for="profileRoleInput">Vai trò</label><input id="profileRoleInput" readonly></div><div class="full"><button class="btn btn-primary" type="submit">Lưu thông tin demo →</button></div></form><div class="notice-panel">Đây chưa phải đăng nhập bảo mật. Không dùng mật khẩu thật hoặc dữ liệu cá nhân nhạy cảm trên bản demo.</div></section></div></section>
+      <section class="page" data-page-content="profile"><div class="page-heading"><div><span class="eyebrow">TÀI KHOẢN</span><h1>Hồ sơ cá nhân</h1><p>Thông tin tài khoản đang dùng trong bản demo.</p></div><span class="page-icon">♙</span></div><div class="profile-layout"><section class="panel profile-card"><div class="profile-avatar" id="profileAvatar">T</div><h2 id="profileName">Người dùng</h2><p id="profileRole" class="muted">Người bệnh / Người nhà</p><span class="verified-pill">TÀI KHOẢN DEMO</span></section><section class="panel profile-details"><div class="panel-heading"><div><h3>Thông tin tài khoản</h3><p>Cập nhật trong phiên demo</p></div></div><form id="profileForm" class="form-grid"><div class="field full"><label for="profileNameInput">Họ và tên</label><input id="profileNameInput" maxlength="100" required></div><div class="field full"><label for="profileEmailInput">Email</label><input id="profileEmailInput" type="email" readonly></div><div class="field full"><label for="profileRoleInput">Vai trò</label><input id="profileRoleInput" readonly></div><div class="full"><button class="btn btn-primary" type="submit">Lưu thông tin demo →</button></div></form><div class="notice-panel">Đây chưa phải đăng nhập bảo mật. Không dùng mật khẩu thật hoặc dữ liệu cá nhân nhạy cảm trên bản demo.</div>
+      <div class="profile-logout-wrap">
+  <button
+  type="button"
+  class="btn btn-outline btn-full"
+  id="profileLogout"
+  onclick="document.getElementById('dropdownLogout').click()"
+>
+  ↪ Đăng xuất
+</button>
+</div>
+      </section></div></section>
     </main>
 
       <nav class="app-bottom-nav" aria-label="Điều hướng MEDINEX">
