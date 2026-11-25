@@ -3107,7 +3107,15 @@ document.querySelectorAll('[data-app-nav]').forEach(button => {
     document.getElementById(
       'installAppBtn'
     );
+const isStandalone =
+  window.matchMedia(
+    '(display-mode: standalone)'
+  ).matches ||
+  window.navigator.standalone === true;
 
+if (isStandalone) {
+  installAppButton.hidden = true;
+}
   if (installAppButton) {
     installAppButton.addEventListener(
       'click',
@@ -3141,10 +3149,9 @@ document.querySelectorAll('[data-app-nav]').forEach(button => {
           window.navigator.standalone === true;
 const installAppBtn =
   document.getElementById('installAppBtn');
-
-if (installAppBtn) {
-  installAppBtn.hidden = isStandalone;
-}
+const isStandalone =
+  window.matchMedia('(display-mode: standalone)').matches ||
+  window.navigator.standalone === true;
         if (isStandalone) {
           toast(
             'MEDINEX TECH đã được cài trên thiết bị.'
